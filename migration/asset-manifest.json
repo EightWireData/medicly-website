@@ -1,0 +1,282 @@
+[
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b14690614fe92195f_Twitter%20Grey.svg",
+    "file": "public/media/twitter-grey.svg",
+    "bytes": 1208
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906521e92190f_Chevron%20(Brand%20Light).svg",
+    "file": "public/media/chevron-brand-light.svg",
+    "bytes": 218
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906595a92197a_Values%20Pattern.svg",
+    "file": "public/media/values-pattern.svg",
+    "bytes": 3211
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906639c921947_Bullet.svg",
+    "file": "public/media/bullet.svg",
+    "bytes": 218
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b14690676d3921971_Chevron%20Down.svg",
+    "file": "public/media/chevron-down.svg",
+    "bytes": 214
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906a4e09219a1_Felix%20Loader.json",
+    "file": "public/media/lottie/felix-loader.json",
+    "bytes": 5684
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906ca79921974_Background%20Shape.svg",
+    "file": "public/media/background-shape.svg",
+    "bytes": 222
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906e0ce92191e_Linkedin%20Icon%20Fill.svg",
+    "file": "public/media/linkedin-icon-fill.svg",
+    "bytes": 718
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906ef71921967_Linkedin%20Grey.svg",
+    "file": "public/media/linkedin-grey.svg",
+    "bytes": 718
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eadf9b146906f805921949_Chevron%20(Brand).svg",
+    "file": "public/media/chevron-brand.svg",
+    "bytes": 218
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eae0e26da7ed813b4e1916_medicly-icon.svg",
+    "file": "public/media/medicly-icon.svg",
+    "bytes": 5245
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eae0e370fa5f0de76726b7_nurse-with-patient.svg",
+    "file": "public/media/nurse-with-patient.svg",
+    "bytes": 49221
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eae0e3a5edc0cce8dd11b6_Doc-with-child-mum.svg",
+    "file": "public/media/doc-with-child-mum.svg",
+    "bytes": 67238
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eae0e3baab5d1357d29dfa_Medicly-header-illo.svg",
+    "file": "public/media/medicly-header-illo.svg",
+    "bytes": 182780
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eae107534c0c16ec76d496_medicly-logo.svg",
+    "file": "public/media/medicly-logo.svg",
+    "bytes": 5474
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eaf0624d181414523c9484_medtechlogo.png",
+    "file": "src/assets/images/medtechlogo.png",
+    "bytes": 11489
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eb285649ff87de34439cad_favicon-32x32.png",
+    "file": "public/media/favicon-32x32.png",
+    "bytes": 1276
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eb28a8ae57fd4e174240bc_medicly%20icon%20web%20clip.png",
+    "file": "public/media/medicly-icon-web-clip.png",
+    "bytes": 9036
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eb5697c4510cffcc5be760_63d1ebdfff89bf635ad3596a_mohlogo-blue.svg",
+    "file": "public/media/mohlogo-blue.svg",
+    "bytes": 23241
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eb81f65bbf6f8888e01d2e_Snowflake-Logo.png",
+    "file": "src/assets/images/snowflake-logo.png",
+    "bytes": 32354
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63eb8437b54fb5ae0f5b1d0a_DHA%20Logo.png",
+    "file": "src/assets/images/dha-logo.png",
+    "bytes": 9932
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ec3b14e7fe5033638b42b1_Video%20thumbnail.jpg",
+    "file": "src/assets/images/video-thumbnail.jpg",
+    "bytes": 11519
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ec4cf4e30c2a28c059149c_Jason%20Ep1.png",
+    "file": "src/assets/images/jason-ep1.png",
+    "bytes": 268164
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ec4e97cef9b98116619723_Ep2%20Thumb.png",
+    "file": "src/assets/images/ep2-thumb.png",
+    "bytes": 416751
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ec4ec6c928dadfacb9b697_Ep3%20thumb.png",
+    "file": "src/assets/images/ep3-thumb.png",
+    "bytes": 392019
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ec5198f65f905f959d9051_Medicly%20Open%20Graph.png",
+    "file": "public/media/medicly-open-graph.png",
+    "bytes": 170749
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ec5461e7fe5060cc8d53c9_Composition%201.json",
+    "file": "public/media/lottie/composition-1.json",
+    "bytes": 7774
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ed6a9745129739b19b353d_play-svgrepo-com.svg",
+    "file": "public/media/play-svgrepo-com.svg",
+    "bytes": 741
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ed88988523a54e28509b42_medicly-opengraph-01.png",
+    "file": "public/media/medicly-opengraph-01.png",
+    "bytes": 144485
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/63ede1019ceec63584fdfd5c_arrow-small-right-svgrepo-com.svg",
+    "file": "public/media/arrow-small-right-svgrepo-com.svg",
+    "bytes": 603
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/6437b60c35119a2f542532f5_Nurses%20with%20Doctor%20checking%20Medical%20Trends.svg",
+    "file": "public/media/nurses-with-doctor-checking-medical-trends.svg",
+    "bytes": 400072
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/646ed54edcd9f59cffb3faeb_Compliant_Coloured.svg",
+    "file": "public/media/compliant-coloured.svg",
+    "bytes": 3982
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/646ed569946aa05ca6978f81_BlazingFast_Coloured.svg",
+    "file": "public/media/blazingfast-coloured.svg",
+    "bytes": 7778
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/646ed59d0cf488ff1d193828_Interoperability_Coloured.svg",
+    "file": "public/media/interoperability-coloured.svg",
+    "bytes": 8649
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/646ed71d3ad1fe199a2f0785_Security_Coloured.svg",
+    "file": "public/media/security-coloured.svg",
+    "bytes": 3272
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/646ed752b4a048bfc0cdb2c2_Speed_Coloured.svg",
+    "file": "public/media/speed-coloured.svg",
+    "bytes": 4180
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/646ed7d5946aa05ca69a09f2_InGoodHands_Coloured.svg",
+    "file": "public/media/ingoodhands-coloured.svg",
+    "bytes": 2980
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/647afac477bb5a186d642b8c_Automation_Red.svg",
+    "file": "public/media/automation-red.svg",
+    "bytes": 6726
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/647afac52ac1af6cccdb678f_Interoperability_Red.svg",
+    "file": "public/media/interoperability-red.svg",
+    "bytes": 8602
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/647afac59990bad204759922_Integration_Red.svg",
+    "file": "public/media/integration-red.svg",
+    "bytes": 1583
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/648686dcc44436f6a757ad49_download.svg",
+    "file": "public/media/download.svg",
+    "bytes": 222
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/64901d2359e5b140ae001fba_synergia-logo.png",
+    "file": "src/assets/images/synergia-logo.png",
+    "bytes": 67680
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/64901d2393b9698dc6b3aec5_impactlab-logo.svg",
+    "file": "public/media/impactlab-logo.svg",
+    "bytes": 4030
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/653f29a7a3b4666743be0d3f_1677650738635.jpeg",
+    "file": "src/assets/images/geoffrey-sayer.jpeg",
+    "bytes": 67540
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/656fca5191a0ba7dca7fac61_EW%20Logo%20Green.svg",
+    "file": "public/media/ew-logo-green.svg",
+    "bytes": 13554
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/6576642d73ceb9f602074e4c_Indici.svg",
+    "file": "public/media/indici.svg",
+    "bytes": 5924
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/6576643905f0908b3444d5b1_medtech%20logo.svg",
+    "file": "public/media/medtech-logo.svg",
+    "bytes": 15823
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/657664558d1e42959f303b1a_Mypractice.svg",
+    "file": "public/media/mypractice.svg",
+    "bytes": 82126
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b14690627c29218ca/6576652ce64ae8bdcd96a449_Snowflake.svg",
+    "file": "public/media/snowflake.svg",
+    "bytes": 61862
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b146906a1d89218e6/63ed4e02bbd59b1f028d109e_Untitled%20design%20(9).png",
+    "file": "src/assets/images/jason-gleason.png",
+    "bytes": 78008
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b146906a1d89218e6/645766bad7bce46062153d88_Nurses%20with%20Doctor%20checking%20Medical%20Trends.png",
+    "file": "src/assets/images/nurses-with-doctor-checking-medical-trends.png",
+    "bytes": 114813
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b146906a1d89218e6/645769cd360885375772a494_Medicly%20Header.png",
+    "file": "src/assets/images/medicly-header.png",
+    "bytes": 125171
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b146906a1d89218e6/64585694300ca4454f116525_alexander-sinn-KgLtFCgfC28-unsplash.jpg",
+    "file": "src/assets/images/alexander-sinn-kgltfcgfc28-unsplash.jpg",
+    "bytes": 595215
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b146906a1d89218e6/645860ba9dcb2431bc7d2c00_ev-gpjvRZyavZc-unsplash.jpg",
+    "file": "src/assets/images/ev-gpjvrzyavzc-unsplash.jpg",
+    "bytes": 351737
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b146906a1d89218e6/646c36a2effadbb51a6cf331_national-cancer-institute-NFvdKIhxYlU-unsplash%20(2).jpg",
+    "file": "src/assets/images/national-cancer-institute-nfvdkihxylu-unsplash.jpg",
+    "bytes": 238129
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/63eadf9b146906a1d89218e6/646c3aedc1ee63426e892438_Andy%20E%20(1).png",
+    "file": "src/assets/images/andy-ellis.png",
+    "bytes": 243331
+  }
+]

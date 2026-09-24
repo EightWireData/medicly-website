@@ -1,0 +1,6 @@
+* text=auto eol=lf
+# Archived Webflow output must stay byte-for-byte identical.
+migration/snapshot/** -text
+*.png binary
+*.jpg binary
+*.jpeg binary

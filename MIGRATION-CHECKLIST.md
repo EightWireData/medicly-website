@@ -54,11 +54,11 @@ Owner questions live in [migration/owner-review.md](migration/owner-review.md).
 - [x] `robots.txt`, sitemap, `_redirects`
 
 ## 5 — Verify
-- [ ] `npm run build` + `astro check` clean
-- [ ] `scripts/verify-copy.mjs` — 0 unexpected missing text
-- [ ] `scripts/verify-build.mjs` — URL parity, no Webflow references, links + assets resolve
-- [ ] Screenshots at 1440 / 768 / 390 vs live site; interactions exercised
-- [ ] axe: 0 serious/critical issues
+- [x] `npm run build` + `astro check` clean (0 errors, 0 warnings)
+- [x] `scripts/verify-copy.mjs` — every archived text run present, occurrence-counted, on all 21 pages + nav + footer
+- [x] `scripts/verify-build.mjs` — 20/20 URLs, sitemap exact, no Webflow references, links + assets resolve
+- [x] Screenshots reviewed at 1440 / 390; no overflow at 360–1024 on any page; nav, drawer, FAQ, video, count-up, motion toggle, reduced motion tested in a browser; critic review done and fixed
+- [x] axe: no issues except brand-colour contrast (white on teal, coral/teal on white — same as the live site; owner decision, see owner-review §4)
 
 ## 6 — Handover
 - [x] README (run, build, edit content)

@@ -43,11 +43,17 @@ import Base from '../layouts/Base.astro';
   // The Webflow 404 animation, loaded only on this page.
   const box = document.querySelector<HTMLElement>('[data-lottie]');
   if (box) {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.dataset.motion === 'paused';
+    const root = document.documentElement;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const motionOff = () => reducedMotion.matches || root.dataset.motion === 'paused';
     import('lottie-web/build/player/esm/lottie_light.min.js').then(({ default: lottie }) => {
-      const anim = lottie.loadAnimation({ container: box, renderer: 'svg', loop: !reduce, autoplay: !reduce, path: box.dataset.lottie! });
-      // With motion off, show a settled frame instead of the blank first frame.
-      if (reduce) anim.addEventListener('DOMLoaded', () => anim.goToAndStop(anim.totalFrames - 1, true));
+      const anim = lottie.loadAnimation({ container: box, renderer: 'svg', loop: true, autoplay: false, path: box.dataset.lottie! });
+      // With motion off, hold a settled frame instead of the blank first frame.
+      const sync = () => (motionOff() ? anim.goToAndStop(anim.totalFrames - 1, true) : anim.play());
+      anim.addEventListener('DOMLoaded', sync);
+      // Follow the footer "Pause motion" toggle and OS setting changes mid-visit.
+      new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-motion'] });
+      reducedMotion.addEventListener('change', sync);
     });
   }
 </script>

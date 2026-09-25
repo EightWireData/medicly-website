@@ -6,7 +6,6 @@
 :root {
   /* brand */
   --navy: #143651;
-  --navy-raised: color-mix(in srgb, #143651 88%, #fff);
   --teal: #268f8e;
   --teal-soft: #92c7c6;
   --coral: #ef4951;

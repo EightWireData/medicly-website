@@ -16,7 +16,8 @@ const { post, posts } = Astro.props;
 const { Content } = await render(post);
 const author = (await getEntry(post.data.author))!;
 const category = (await getEntry(post.data.category))!;
-const related = posts.filter((p) => p.id !== post.id);
+// Webflow's Related Articles listed every post, the current one included.
+const related = posts;
 const og = await getImage({ src: post.data.image, width: 1200, format: 'jpg' });
 const authorBio = author.body?.trim() ?? '';
 ---
@@ -208,7 +209,13 @@ const authorBio = author.body?.trim() ?? '';
 
   @media (min-width: 640px) {
     .related {
-      grid-template-columns: repeat(2, minmax(0, 380px));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .related {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>

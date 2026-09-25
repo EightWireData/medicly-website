@@ -36,6 +36,27 @@ function snapshotMain($) {
   return $('body > *').not(':has(.navbar)').not('.navbar').not('.footer-section-template').not(HIDDEN);
 }
 
+// Non-overlapping occurrences of `needle` in `hay`.
+const count = (hay, needle) => {
+  let n = 0;
+  for (let i = hay.indexOf(needle); i !== -1; i = hay.indexOf(needle, i + needle.length)) n++;
+  return n;
+};
+
+// Runs from the archive that are missing — or appear fewer times — in the build. Counting matters:
+// a phrase used twice on a Webflow page must still appear twice, or a dropped block goes unnoticed.
+function missingRuns(snapshotRuns, haystack, allow) {
+  const snapshotText = snapshotRuns.join(' | ');
+  const out = [];
+  for (const r of new Set(snapshotRuns)) {
+    if (allow.has(r)) continue;
+    const need = count(snapshotText, r);
+    const have = count(haystack, r);
+    if (have < need) out.push(have ? `${r}  [${have} of ${need} occurrences]` : r);
+  }
+  return out;
+}
+
 let problems = 0;
 const report = (label, missing) => {
   if (!missing.length) return console.log(`ok   ${label}`);
@@ -49,10 +70,9 @@ async function checkPage(path, snapFile, builtFile, allow = new Set()) {
   if (!existsSync(built)) return report(path, [`(built page ${builtFile} does not exist)`]);
   const $s = await readHtml(SNAPSHOT, snapFile);
   $s(HIDDEN).remove();
-  const runs = [...new Set(textRuns($s, snapshotMain($s)))];
+  const runs = textRuns($s, snapshotMain($s));
   const $d = await readHtml(DIST, builtFile);
-  const haystack = pageText($d, 'main');
-  report(path, runs.filter((r) => !allow.has(r) && !haystack.includes(r)));
+  report(path, missingRuns(runs, pageText($d, 'main'), allow));
 }
 
 async function checkChrome() {
@@ -63,9 +83,7 @@ async function checkChrome() {
     ['nav', '.navbar', 'header.site-nav'],
     ['footer', '.footer-section-template', 'footer.site-footer'],
   ]) {
-    const runs = [...new Set(textRuns($s, $s(sSel)))];
-    const haystack = pageText($d, dSel);
-    report(`(${label})`, runs.filter((r) => !ALLOW.chrome.has(r) && !haystack.includes(r)));
+    report(`(${label})`, missingRuns(textRuns($s, $s(sSel)), pageText($d, dSel), ALLOW.chrome));
   }
 }
 

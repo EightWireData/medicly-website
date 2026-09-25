@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="Not Found" ogImage={null} noindex>
-  <section class="not-found glow-hero grid-lines">
+  <section class="not-found section--white">
     <div class="container container--narrow not-found__inner">
       <div class="not-found__anim" data-lottie="/media/lottie/composition-1.json" aria-hidden="true"></div>
       <h1 class="sr-only">Not Found</h1>
@@ -45,7 +45,9 @@ import Base from '../layouts/Base.astro';
   if (box) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.dataset.motion === 'paused';
     import('lottie-web/build/player/esm/lottie_light.min.js').then(({ default: lottie }) => {
-      lottie.loadAnimation({ container: box, renderer: 'svg', loop: !reduce, autoplay: !reduce, path: box.dataset.lottie });
+      const anim = lottie.loadAnimation({ container: box, renderer: 'svg', loop: !reduce, autoplay: !reduce, path: box.dataset.lottie! });
+      // With motion off, show a settled frame instead of the blank first frame.
+      if (reduce) anim.addEventListener('DOMLoaded', () => anim.goToAndStop(anim.totalFrames - 1, true));
     });
   }
 </script>

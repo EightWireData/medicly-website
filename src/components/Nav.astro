@@ -223,11 +223,14 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
       visibility 0s linear 0.25s;
   }
 
+  /* visibility switches instantly on open so the links are immediately focusable */
   .nav__dropdown.is-open .nav__panel {
     opacity: 1;
     visibility: visible;
     transform: none;
-    transition-delay: 0s;
+    transition:
+      opacity 0.25s var(--ease-out),
+      transform 0.25s var(--ease-out);
   }
 
   @media (min-width: 992px) {
@@ -469,15 +472,22 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     dropdown.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
   };
-  toggle.addEventListener('click', () => setOpen(!dropdown.classList.contains('is-open')));
+  let hoverOpenedAt = 0;
+  toggle.addEventListener('click', (e) => {
+    // Mouse moved onto the toggle (hover-opened) and clicked straight away: keep it open.
+    // Keyboard activation reports detail 0 and always toggles.
+    if (e.detail > 0 && Date.now() - hoverOpenedAt < 500) return;
+    setOpen(!dropdown.classList.contains('is-open'));
+  });
   const hover = window.matchMedia('(hover: hover)');
-  dropdown.addEventListener('pointerenter', () => {
-    if (!hover.matches) return;
+  dropdown.addEventListener('pointerenter', (e) => {
+    if (!hover.matches || e.pointerType !== 'mouse') return;
     clearTimeout(closeTimer);
+    if (!dropdown.classList.contains('is-open')) hoverOpenedAt = Date.now();
     setOpen(true);
   });
-  dropdown.addEventListener('pointerleave', () => {
-    if (!hover.matches) return;
+  dropdown.addEventListener('pointerleave', (e) => {
+    if (!hover.matches || e.pointerType !== 'mouse') return;
     closeTimer = window.setTimeout(() => setOpen(false), 200);
   });
   document.addEventListener('keydown', (e) => {

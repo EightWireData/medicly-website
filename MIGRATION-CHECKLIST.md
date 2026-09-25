@@ -10,48 +10,48 @@ Owner questions live in [migration/owner-review.md](migration/owner-review.md).
 - [x] `scripts/fetch-assets.mjs`: 54 original assets downloaded, `migration/asset-manifest.json` written, sizes > 0
 
 ## 1 — Foundation
-- [ ] Astro 7 + `@astrojs/sitemap` + `@fontsource/poppins` + `@fontsource/jetbrains-mono`; cheerio (dev)
-- [ ] `src/styles/tokens.css` + `global.css` (palette, type scale, grain, grid/glow backgrounds, reveal, reduced motion)
-- [ ] `src/layouts/Base.astro` (SEO head, Intercom, grain, motion toggle)
-- [ ] Nav (Resources dropdown + mobile drawer)
-- [ ] Footer (verbatim, Powered by Eightwire)
-- [ ] Shared components
+- [x] Astro 7 + `@astrojs/sitemap` + `@fontsource/poppins` + `@fontsource/jetbrains-mono`; cheerio (dev)
+- [x] `src/styles/tokens.css` + `global.css` (palette, type scale, grain, grid/glow backgrounds, reveal, reduced motion)
+- [x] `src/layouts/Base.astro` (SEO head, Intercom, grain, motion toggle)
+- [x] Nav (Resources dropdown + mobile drawer)
+- [x] Footer (verbatim, Powered by Eightwire)
+- [x] Shared components
 
 ## 2 — Content collections
-- [ ] Blog posts ×3 (verbatim bodies)
-- [ ] Team ×2
-- [ ] Jobs ×1
-- [ ] Categories ×2
+- [x] Blog posts ×3 (verbatim bodies)
+- [x] Team ×2
+- [x] Jobs ×1
+- [x] Categories ×2
 
 ## 3 — Pages
-- [ ] `/`
-- [ ] `/about-us`
-- [ ] `/product`
-- [ ] `/technical-overview`
-- [ ] `/partners`
-- [ ] `/videos`
-- [ ] `/faq`
-- [ ] `/contact`
-- [ ] `/get-started`
-- [ ] `/privacy-policy`
-- [ ] `/terms-and-conditions`
-- [ ] `/blog`
-- [ ] `/blog/[slug]` ×3
-- [ ] `/category/[slug]` ×2
-- [ ] `/team/[slug]` ×2
-- [ ] `/job/[slug]`
-- [ ] 404
+- [x] `/`
+- [x] `/about-us`
+- [x] `/product`
+- [x] `/technical-overview`
+- [x] `/partners`
+- [x] `/videos`
+- [x] `/faq`
+- [x] `/contact`
+- [x] `/get-started`
+- [x] `/privacy-policy`
+- [x] `/terms-and-conditions`
+- [x] `/blog`
+- [x] `/blog/[slug]` ×3
+- [x] `/category/[slug]` ×2
+- [x] `/team/[slug]` ×2
+- [x] `/job/[slug]`
+- [x] 404
 
 ## 4 — Fixes & SEO
-- [ ] Wrong `mailto:Hello@website.com` → `hello@medicly.co.nz`
-- [ ] Footer "Careers" (`/jobs` 404) → `/job/intermediate-engineer` + redirect
-- [ ] "Take me home" `#` → `/`; "Apply Now" `#` → mailto
-- [ ] Empty / invisible template links removed (`/company/about-us-1`, flowbase)
-- [ ] Blog category badge shows its category name
-- [ ] `/about-us` meta description (Felix template text) → that page's hero paragraph
-- [ ] Blog list-item colour bug not carried over
-- [ ] One H1 per page, `lang="en-NZ"`, canonical, OG tags per page
-- [ ] `robots.txt`, sitemap, `_redirects`
+- [x] Wrong `mailto:Hello@website.com` → `hello@medicly.co.nz`
+- [x] Footer "Careers" (`/jobs` 404) → `/job/intermediate-engineer` + redirect
+- [x] "Take me home" `#` → `/`; "Apply Now" `#` → mailto
+- [x] Empty / invisible template links removed (`/company/about-us-1`, flowbase)
+- [x] Blog category badge shows its category name
+- [x] `/about-us` meta description (Felix template text) → that page's hero paragraph
+- [x] Blog list-item colour bug not carried over
+- [x] One H1 per page, `lang="en-NZ"`, canonical, OG tags per page
+- [x] `robots.txt`, sitemap, `_redirects`
 
 ## 5 — Verify
 - [ ] `npm run build` + `astro check` clean
@@ -61,6 +61,6 @@ Owner questions live in [migration/owner-review.md](migration/owner-review.md).
 - [ ] axe: 0 serious/critical issues
 
 ## 6 — Handover
-- [ ] README (run, build, edit content)
-- [ ] `migration/owner-review.md` complete
-- [ ] Hosting + DNS cutover steps (user performs cutover)
+- [x] README (run, build, edit content)
+- [x] `migration/owner-review.md` complete
+- [x] Hosting + DNS cutover steps written (README → Going live) — cutover itself is yours

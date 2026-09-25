@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostCard from '../../components/PostCard.astro';
+import CategoryBar from '../../components/CategoryBar.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { getPosts } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((category) => ({ params: { slug: category.id }, props: { category } }));
+}
+
+const { category } = Astro.props;
+const posts = (await getPosts()).filter((p) => p.data.category.id === category.id);
+---
+
+<!-- Webflow gave category pages no meta description or social image. -->
+<Base title={`Latest Articles - ${category.data.name}`} ogImage={null}>
+  <PageHero eyebrow="Latest Articles" title={category.data.name} compact />
+
+  <section class="section section--white">
+    <div class="container">
+      <CategoryBar current={category.id} />
+      <ul class="post-grid" role="list">
+        {
+          posts.map((post, i) => (
+            <li class="reveal" style={`--i: ${i}`}>
+              <PostCard post={post} headingLevel="h2" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .post-grid {
+    display: grid;
+    gap: 24px;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .post-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .post-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .post-grid > li {
+    display: flex;
+  }
+
+  .post-grid > li > :global(*) {
+    flex: 1;
+  }
+</style>

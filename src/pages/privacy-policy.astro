@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import policy from '../data/legal/privacy-policy.html?raw';
+---
+
+<Base
+  title="Medicly | Privacy Policy"
+  description="An all-round solution for sensitive health data transfer.‍ Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need."
+>
+  <PageHero eyebrow="Last updated 1st February 2023" title="Privacy Policy" compact />
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="prose legal" set:html={policy} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal :global(p) {
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  .legal :global(p + p) {
+    margin-top: 2em;
+  }
+
+  .legal :global(strong) {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--navy);
+  }
+
+  .legal :global(strong + br) {
+    display: none;
+  }
+</style>

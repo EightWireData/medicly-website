@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import { ADDRESS, EMAIL, MAP_URL, mailto } from '../data/site';
+
+// The Webflow contact form's fields, used to pre-fill the email.
+const formFields = ['First Name', 'Last Name', 'Phone number', 'Email address', 'Company', 'Message'];
+---
+
+<Base
+  title="Contact Us | Medicly"
+  description="Consolidating data across the healthcare sector. An automated data exchange that aggregates from multiple practice management systems, more speedy and securely than ever before."
+>
+  <section class="contact glow-hero grid-lines">
+    <div class="container contact__grid">
+      <div class="contact__copy">
+        <p class="eyebrow eyebrow--pill rise"><span class="pulse-dot"></span>GET IN TOUCH</p>
+        <h1 class="h1 rise" style="--i: 1">Contact <em>Us</em></h1>
+        <p class="lede rise" style="--i: 2">
+          We love showing customers how contact-driven data sharing works. Let our team show your organisation how we can reduce your cost,
+          time and risk of delivering analytics, data integration and collaboration programmes.
+        </p>
+        <div class="btn-row rise" style="--i: 3">
+          <a class="btn btn--primary" href={mailto('Contact Medicly', formFields)}>{EMAIL} <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="contact__cards">
+        <a class="card card--hover contact-card contact-card--email rise" style="--i: 2" href={mailto('Contact Medicly', formFields)}>
+          <p class="contact-card__label">EMAIL</p>
+          <p class="contact-card__value">{EMAIL}</p>
+          <span class="contact-card__arrow" aria-hidden="true">→</span>
+        </a>
+        <div class="card contact-card rise" style="--i: 3">
+          <h2 class="h2-sm">Visit us</h2>
+          <p class="body">{ADDRESS}</p>
+          <a class="link-arrow" href={MAP_URL} target="_blank" rel="noopener">
+            View on Google Maps <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact {
+    position: relative;
+    isolation: isolate;
+    padding: 56px 0 96px;
+  }
+
+  @media (min-width: 640px) {
+    .contact {
+      padding: 88px 0 128px;
+    }
+  }
+
+  .contact__grid {
+    display: grid;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .contact__grid {
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+    }
+  }
+
+  .contact__copy > * + * {
+    margin-top: 24px;
+  }
+
+  .contact__copy .btn-row {
+    margin-top: 36px;
+  }
+
+  .contact__cards {
+    display: grid;
+    gap: 20px;
+  }
+
+  .contact-card {
+    display: grid;
+    gap: 14px;
+    padding: 32px;
+  }
+
+  .contact-card__label {
+    font: 500 0.6875rem/1.4 var(--font-mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  .contact-card--email {
+    position: relative;
+    border-color: transparent;
+    background:
+      radial-gradient(60% 80% at 100% 0%, rgb(255 255 255 / 0.18), transparent 70%),
+      var(--coral);
+    color: #fff;
+  }
+
+  .contact-card--email:hover {
+    border-color: transparent;
+  }
+
+  .contact-card__value {
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    word-break: break-word;
+  }
+
+  .contact-card__arrow {
+    position: absolute;
+    top: 28px;
+    right: 32px;
+    font-size: 1.25rem;
+    transition: transform 0.2s var(--ease-out);
+  }
+
+  .contact-card--email:hover .contact-card__arrow {
+    transform: translateX(4px);
+  }
+</style>

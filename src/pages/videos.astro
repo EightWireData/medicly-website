@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import YouTube from '../components/YouTube.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ep1 from '../assets/images/jason-ep1.png';
+import ep2 from '../assets/images/ep2-thumb.png';
+import ep3 from '../assets/images/ep3-thumb.png';
+import { featuredVideo } from '../data/nav';
+---
+
+<Base
+  title="Videos | Medicly"
+  description="An all-round solution for sensitive health data transfer.‍ Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need."
+>
+  <section class="videos-hero glow-hero grid-lines hairline">
+    <div class="container split">
+      <div class="videos-hero__copy">
+        <p class="eyebrow eyebrow--pill rise"><span class="pulse-dot"></span>IMPROVING HEALTHCARE OUTCOMES</p>
+        <h1 class="h1 rise" style="--i: 1">Seamless, simple <em>health data sharing</em></h1>
+        <p class="lede rise" style="--i: 2">
+          We've seen data challenges across our healthcare sector for a long time. The reality is that health systems are complex and
+          fragile to build and maintain. They also affect everyone, internally and externally. <br /><br />Medically evolved from these
+          frustrations and the risks that come with them. It's our innovative software solution that constantly learns from data systems,
+          and manages the transformation, security, and audit processes needed for sharing.
+        </p>
+      </div>
+      <div class="rise" style="--i: 2">
+        <YouTube id="wKXHxCj19aE" title="Medicly - What's Going on with Healthcare in New Zealand?" poster={ep1} eager />
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark glow-dark grid-lines">
+    <div class="container">
+      <p class="eyebrow eyebrow--caption series reveal">{featuredVideo.title}</p>
+      <div class="episodes">
+        <div class="reveal">
+          <YouTube id="K0W0OqG7IMI" title="Medicly - Who Misses Out When We Don't Share Data?" poster={ep2} size="md" />
+        </div>
+        <div class="reveal" style="--i: 1">
+          <YouTube id="k3aUnnaEjjs" title="Medicly - Using Data Analysis to Improve Community Wellbeing" poster={ep3} size="md" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .videos-hero {
+    position: relative;
+    isolation: isolate;
+    padding: 56px 0 72px;
+  }
+
+  @media (min-width: 640px) {
+    .videos-hero {
+      padding: 88px 0 104px;
+    }
+  }
+
+  .videos-hero__copy > * + * {
+    margin-top: 24px;
+  }
+
+  .series {
+    margin-bottom: 40px;
+  }
+
+  .episodes {
+    display: grid;
+    gap: 24px;
+  }
+
+  @media (min-width: 900px) {
+    .episodes {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+  }
+</style>

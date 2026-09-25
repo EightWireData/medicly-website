@@ -1,0 +1,93 @@
+---
+/** Accordion of native <details> elements (works without JS), Eightwire style: index, question, rotating "+". */
+import type { Faq } from '../data/faq';
+
+interface Props {
+  items: Faq[];
+}
+const { items } = Astro.props;
+---
+
+<div class="faq">
+  {
+    items.map((item, i) => (
+      <details class="faq__item reveal" style={`--i: ${i}`} open={i === 0}>
+        <summary>
+          <span class="index" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <h2 class="faq__q">{item.q}</h2>
+          <span class="faq__icon" aria-hidden="true">
+            +
+          </span>
+        </summary>
+        <div class="faq__a">
+          <p set:html={item.a} />
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .faq__item summary {
+    display: grid;
+    grid-template-columns: 40px 1fr 32px;
+    align-items: baseline;
+    gap: 12px;
+    padding: 28px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__q {
+    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    transition: color 0.2s;
+  }
+
+  .faq__item summary:hover .faq__q {
+    color: var(--teal);
+  }
+
+  .faq__icon {
+    justify-self: end;
+    font: 400 1.5rem/1 var(--font-mono);
+    color: var(--teal);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .faq__item[open] .faq__icon {
+    transform: rotate(45deg);
+  }
+
+  .faq__a {
+    padding: 0 44px 32px 52px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  @media (max-width: 639px) {
+    .faq__item summary {
+      grid-template-columns: 32px 1fr 24px;
+    }
+
+    .faq__a {
+      padding: 0 0 28px 44px;
+    }
+  }
+</style>

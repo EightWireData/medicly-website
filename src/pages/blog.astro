@@ -1,0 +1,187 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PostCard from '../components/PostCard.astro';
+import CategoryBar from '../components/CategoryBar.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getEntry } from 'astro:content';
+import { getPosts, TOP_POST } from '../lib/blog';
+import { EMAIL, SOCIAL, mailto } from '../data/site';
+
+const posts = await getPosts();
+const [featured] = posts;
+const top = posts.find((p) => p.id === TOP_POST)!;
+const topCategory = await getEntry(top.data.category);
+---
+
+<Base
+  title="Medicly | Blog"
+  description="‍Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need."
+>
+  <PageHero
+    eyebrow="OUR BLOG"
+    title="Discover the latest updates from the <em>Medicly team</em>"
+    image={{ src: '/media/medicly-header-illo.svg', width: 658, height: 464 }}
+  >
+    <a class="btn btn--primary" href="/contact">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
+  </PageHero>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="reveal">
+        <PostCard post={featured} variant="feature" headingLevel="h2" />
+      </div>
+
+      <div class="blog-layout">
+        <div class="blog-main">
+          <CategoryBar />
+          <ul class="post-grid" role="list">
+            {
+              posts.map((post, i) => (
+                <li class="reveal" style={`--i: ${i}`}>
+                  <PostCard post={post} />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <aside class="blog-aside" aria-label="Blog sidebar">
+          <div class="aside-block reveal">
+            <p class="eyebrow eyebrow--rule">NEWSLETTER</p>
+            <a class="btn btn--primary btn--sm" href={mailto('Newsletter subscription')}>{EMAIL}</a>
+          </div>
+          <div class="aside-block reveal">
+            <p class="eyebrow eyebrow--rule">FOLLOW US</p>
+            <ul class="social" role="list">
+              <li>
+                <a href={SOCIAL.twitter} target="_blank" rel="noopener">
+                  <img src="/media/twitter-grey.svg" width="20" height="20" alt="" />Twitter
+                </a>
+              </li>
+              <li>
+                <a href={SOCIAL.youtube} target="_blank" rel="noopener">
+                  <img src="/media/play-svgrepo-com.svg" width="20" height="20" alt="" />Youtube
+                </a>
+              </li>
+              <li>
+                <a href={SOCIAL.linkedin} target="_blank" rel="noopener">
+                  <img src="/media/linkedin-grey.svg" width="20" height="20" alt="" />LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="aside-block reveal">
+            <p class="eyebrow eyebrow--rule">TOP POSTS</p>
+            <a href={`/blog/${top.id}`} class="top-post">
+              <span class="badge">{topCategory!.data.name}</span>
+              <span class="top-post__title">{top.data.title}</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .blog-layout {
+    display: grid;
+    gap: 56px;
+    margin-top: 72px;
+  }
+
+  @media (min-width: 1024px) {
+    .blog-layout {
+      grid-template-columns: 1fr 280px;
+      gap: 64px;
+    }
+
+    .blog-aside {
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+      align-self: start;
+    }
+  }
+
+  .post-grid {
+    display: grid;
+    gap: 24px;
+    margin: 32px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .post-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .post-grid > li {
+    display: flex;
+  }
+
+  .post-grid > li > :global(*) {
+    flex: 1;
+  }
+
+  .blog-aside {
+    display: grid;
+    gap: 40px;
+  }
+
+  .aside-block {
+    display: grid;
+    gap: 16px;
+    justify-items: start;
+  }
+
+  .social {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9375rem;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .social a:hover {
+    color: var(--coral);
+  }
+
+  .social img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.75;
+  }
+
+  .top-post {
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .top-post__title {
+    font-weight: 600;
+    line-height: 1.4;
+    transition: color 0.2s;
+  }
+
+  .top-post:hover .top-post__title {
+    color: var(--teal);
+  }
+</style>

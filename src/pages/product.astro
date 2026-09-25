@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const features = [
+  {
+    no: '01',
+    icon: { src: '/media/integration-red.svg', width: 102, height: 88 },
+    title: 'Integration',
+    text: 'System integration without the need for APIs, manual extracts or other complex technologies.',
+  },
+  {
+    no: '02',
+    icon: { src: '/media/interoperability-red.svg', width: 139, height: 148 },
+    title: 'Interoperability',
+    text: 'Application of specific data standards such as SNOMED, HL7 and FHIR to ensure interoperability.',
+  },
+  {
+    no: '03',
+    icon: { src: '/media/automation-red.svg', width: 164, height: 133 },
+    title: 'Automation',
+    text: 'Automated error correction for thousands of common data errors to reduce system crashes.',
+  },
+];
+---
+
+<Base
+  title="Product | Medicly"
+  description="An all-round solution for sensitive health data transfer. Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need."
+>
+  <PageHero
+    eyebrow="HEALTHY DATA MANAGEMENT"
+    title="Automated, secure, and made for the <em>Aotearoa healthcare sector</em>"
+    lede="Medicly is the healthcare data exchange that we've always needed."
+    image={{ src: '/media/medicly-header-illo.svg', width: 658, height: 464 }}
+  >
+    <a class="btn btn--primary" href="/contact">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
+  </PageHero>
+
+  <section class="section glow-mint">
+    <div class="container">
+      <SectionHead
+        eyebrow="Automated data delivery"
+        title="Medicly brings together data from across the <em>primary care system</em>"
+        lede="Analytics and collaboration can be accelerated through our powerful data sharing platform optimised for Aotearoa."
+      />
+      <ul class="ruled" role="list">
+        {
+          features.map((f, i) => (
+            <li class="ruled__item reveal" style={`--i: ${i}`}>
+              <span class="index">{f.no}</span>
+              <img class="numbered-icon" src={f.icon.src} width={f.icon.width} height={f.icon.height} alt="" loading="lazy" />
+              <h3 class="h3">{f.title}</h3>
+              <p class="body">{f.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container split split--media-first">
+      <div class="stack reveal" style="--stack: 24px">
+        <p class="eyebrow eyebrow--rule">Innovating healthcare</p>
+        <h2 class="h2">An all-round solution for <em>sensitive health data transfer</em></h2>
+        <p class="lede">
+          Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain.
+          It's secure and compliant, so you can focus on getting the valuable insights you need.
+        </p>
+      </div>
+      <div class="media-blob reveal" style="--i: 1">
+        <img src="/media/nurse-with-patient.svg" width="339" height="359" alt="" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .numbered-icon {
+    width: auto;
+    height: 96px;
+  }
+
+  .media-blob {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+  }
+
+  .media-blob::before {
+    content: '';
+    position: absolute;
+    inset: 8% 10%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--mint), transparent);
+  }
+
+  .media-blob img {
+    width: 100%;
+    max-width: 400px;
+  }
+</style>

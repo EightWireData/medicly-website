@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqs } from '../data/faq';
+---
+
+<Base
+  title="FAQ | Medicly"
+  description="An all-round solution for sensitive health data transfer. Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need."
+>
+  <PageHero eyebrow="FAQ" title="Frequently Asked <em>Questions</em>" compact />
+
+  <section class="section section--white">
+    <div class="container container--narrow">
+      <FaqList items={faqs} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

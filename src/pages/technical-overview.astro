@@ -1,0 +1,166 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { EMAIL, mailto } from '../data/site';
+
+const features = [
+  {
+    no: '01',
+    icon: { src: '/media/integration-red.svg', width: 102, height: 88 },
+    title: 'Integration',
+    text: 'System integration without the need for APIs, manual extracts or other complex technologies.',
+  },
+  {
+    no: '02',
+    icon: { src: '/media/interoperability-red.svg', width: 139, height: 148 },
+    title: 'Data standards',
+    text: 'Application of specific data standards such as SNOMED or FHIR to ensure interoperability.',
+  },
+  {
+    no: '03',
+    icon: { src: '/media/automation-red.svg', width: 164, height: 133 },
+    title: 'Automation',
+    text: 'Automated error correction for thousands of common data errors to reduce system crashes.',
+  },
+];
+
+const idealFor = [
+  'Sharing sensitive information across separate divisions, partners, and customers.',
+  'Populating cloud-based data warehouse platforms with sensitive data from on-premises systems.',
+  'Aggregating data for data warehouse systems from across external partners.',
+  'Deploying data sharing features for enterprise SaaS products that rely on sensitive data from legacy systems.',
+];
+---
+
+<Base
+  title="Technical overview | Medicly"
+  description="We deliver an innovative software solution that allows enterprises to share sensitive data faster and more securely than ever before. We work with some of the world's most exciting public and private organisations to drastically reduce the time, costs, and risk of sharing data, enabling them to realise the benefits of data-sharing."
+>
+  <PageHero
+    eyebrow="Technical OVerview"
+    title="We've created the fastest, most secure <em>healthcare data exchange</em>"
+    lede="Analytics and collaboration can be accelerated through our powerful data sharing platform optimised for Aotearoa."
+    compact
+  />
+
+  <section class="section section--white">
+    <div class="container">
+      <ul class="ruled" role="list">
+        {
+          features.map((f, i) => (
+            <li class="ruled__item reveal" style={`--i: ${i}`}>
+              <span class="index">{f.no}</span>
+              <img class="numbered-icon" src={f.icon.src} width={f.icon.width} height={f.icon.height} alt="" loading="lazy" />
+              <h2 class="h3">{f.title}</h2>
+              <p class="body">{f.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section glow-mint">
+    <div class="container split split--media-first overview">
+      <div class="stack reveal" style="--stack: 24px">
+        <p class="eyebrow eyebrow--rule">MEDICLY DATA EXCHANGE</p>
+        <h2 class="h2">Technical overview</h2>
+        <p class="body overview__text">
+          Enterprises have always needed to share sensitive information across business and technology boundaries. Software products have
+          met this need with aggregating data repositories into one platform or complex data engineering tools to move and transform data
+          over the internet. These solutions don’t work for many enterprises, so sensitive data sharing is often delivered with ad hoc
+          tools and processes that fail to meet security, auditing and governance legislation.<br /><br />Medicly is a data sharing
+          product that automates the movement and management of sensitive business data. It removes the majority of the work for
+          customers to share data across boundaries while maintaining end-to-end security. With Medicly, enterprises have a complete
+          system-to-system solution to feed data platforms from external sources and internal silos that would be difficult to access.
+        </p>
+        <h3 class="h3">Medicly is ideal for:</h3>
+        <ul class="ideal" role="list">
+          {
+            idealFor.map((item) => (
+              <li>
+                <img src="/media/bullet.svg" width="24" height="24" alt="" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="reveal" style="--i: 1">
+        <img class="overview__img" src="/media/nurses-with-doctor-checking-medical-trends.svg" width="508" height="484" alt="" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark glow-dark-center grid-lines" aria-labelledby="whitepapers">
+    <div class="container container--narrow whitepaper reveal">
+      <p class="eyebrow eyebrow--caption">WHITEPAPERS</p>
+      <h2 id="whitepapers" class="h2">Technical and Security <em>Whitepaper</em></h2>
+      <p class="lede">
+        Our Technical Whitepaper can be requested by entering your email below. <br /><br />For any other Technical related queries,
+        please get in touch with our friendly team.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href={mailto('Technical Whitepaper request')}>{EMAIL} <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .numbered-icon {
+    width: auto;
+    height: 96px;
+  }
+
+  .overview {
+    align-items: start;
+  }
+
+  .overview__text {
+    font-size: 1rem;
+  }
+
+  .overview__img {
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  .ideal {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ideal li {
+    display: flex;
+    gap: 12px;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .ideal img {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+  }
+
+  .whitepaper {
+    display: grid;
+    justify-items: center;
+    gap: 22px;
+    text-align: center;
+  }
+
+  .whitepaper .lede {
+    margin-inline: auto;
+  }
+
+  .whitepaper .btn-row {
+    margin-top: 12px;
+  }
+</style>

@@ -15,4 +15,8 @@ export const INTERCOM_APP_ID = 'ymbkb5nq';
 export const GOOGLE_SITE_VERIFICATION = 'Jww9dgcgONRXotIanwB0QkScVzYIC-2v0T_Lb8Bdois';
 
 // Webflow forms were replaced with mailto links (see migration/owner-review.md).
-export const mailto = (subject: string) => `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`;
+// `fields` pre-fills the email body with the old form's field labels.
+export const mailto = (subject: string, fields: string[] = []) => {
+  const body = fields.length ? `&body=${encodeURIComponent(fields.map((f) => `${f}: `).join('\n'))}` : '';
+  return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}${body}`;
+};

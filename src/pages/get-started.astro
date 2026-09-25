@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { ADDRESS, EMAIL, MAP_URL, PHONE_DISPLAY, PHONE_HREF, mailto } from '../data/site';
+
+// The Webflow get-started form's field labels, used to pre-fill the email.
+const formFields = ['Name', 'Email Address', 'Company', 'Phone number'];
+const getStartedMail = mailto('Get started with Medicly', formFields);
+---
+
+<Base
+  title="Medicly | Get started"
+  description="An all-round solution for sensitive health data transfer.‍ Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need."
+>
+  <PageHero
+    eyebrow="GET STARTED"
+    title="The fastest, most secure healthcare data exchange <em>you'll ever experience</em>"
+    lede="Enter your details and see for yourself how Medicly can reduce the cost, time and risk of delivering primary care analytics."
+  >
+    <a class="btn btn--primary" href={getStartedMail}>{EMAIL} <span class="arrow" aria-hidden="true">→</span></a>
+  </PageHero>
+
+  <section class="section section--white">
+    <div class="container">
+      <ul class="ruled details" role="list" style="--cols: 3">
+        <li class="ruled__item reveal">
+          <h2 class="h2-sm">Visit Us</h2>
+          <p class="body">{ADDRESS}</p>
+          <a class="link-arrow" href={MAP_URL} target="_blank" rel="noopener">
+            View on Google Maps <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="ruled__item reveal" style="--i: 1">
+          <p class="eyebrow">Call Us</p>
+          <p class="details__value"><a href={PHONE_HREF}>{PHONE_DISPLAY}</a></p>
+        </li>
+        <li class="ruled__item reveal" style="--i: 2">
+          <p class="eyebrow">EMAIL</p>
+          <p class="details__value"><a href={getStartedMail}>{EMAIL}</a></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .details__value {
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    word-break: break-word;
+  }
+
+  .details__value a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: var(--teal);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+    transition: color 0.2s;
+  }
+
+  .details__value a:hover {
+    color: var(--coral);
+  }
+</style>

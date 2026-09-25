@@ -1,0 +1,71 @@
+---
+/**
+ * Subpage hero (Eightwire pattern): pill eyebrow, H1, lede, optional buttons (default slot),
+ * with the page's Medicly illustration alongside when it had one.
+ */
+interface Props {
+  eyebrow?: string;
+  /** H1 text; may contain an <em> accent phrase. */
+  title: string;
+  lede?: string;
+  image?: { src: string; width: number; height: number };
+  compact?: boolean;
+}
+const { eyebrow, title, lede, image, compact = false } = Astro.props;
+---
+
+<section class:list={['page-hero glow-hero grid-lines hairline', { 'page-hero--compact': compact }]}>
+  <div class:list={['container', image ? 'split' : 'page-hero__solo']}>
+    <div class="page-hero__copy">
+      {eyebrow && <p class="eyebrow eyebrow--pill rise"><span class="pulse-dot"></span>{eyebrow}</p>}
+      <h1 class="h1 rise" style="--i: 1" set:html={title} />
+      {lede && <p class="lede rise" style="--i: 2">{lede}</p>}
+      {
+        Astro.slots.has('default') && (
+          <div class="btn-row rise" style="--i: 3">
+            <slot />
+          </div>
+        )
+      }
+    </div>
+    {
+      image && (
+        <div class="page-hero__media rise" style="--i: 2">
+          <img src={image.src} width={image.width} height={image.height} alt="" fetchpriority="high" />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    padding: 56px 0 72px;
+  }
+
+  @media (min-width: 640px) {
+    .page-hero {
+      padding: 88px 0 104px;
+    }
+
+    .page-hero--compact {
+      padding: 72px 0 80px;
+    }
+  }
+
+  .page-hero__copy > * + * {
+    margin-top: 24px;
+  }
+
+  .page-hero__copy .btn-row {
+    margin-top: 36px;
+  }
+
+  .page-hero__media img {
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+</style>

@@ -1,0 +1,214 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { Image, getImage } from 'astro:assets';
+import { getEntry, render } from 'astro:content';
+import { getPosts } from '../../lib/blog';
+import { formatDate } from '../../lib/format';
+import { EMAIL, mailto } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props;
+const { Content } = await render(post);
+const author = (await getEntry(post.data.author))!;
+const category = (await getEntry(post.data.category))!;
+const related = posts.filter((p) => p.id !== post.id);
+const og = await getImage({ src: post.data.image, width: 1200, format: 'jpg' });
+const authorBio = author.body?.trim() ?? '';
+---
+
+<Base title={post.data.title} description={post.data.summary} ogImage={og.src}>
+  <article>
+    <header class="post-hero glow-hero grid-lines">
+      <div class="container container--narrow post-hero__inner">
+        <a href="/blog" class="back rise">
+          <span aria-hidden="true">←</span> Back
+        </a>
+        <a href={`/category/${category.id}`} class="badge rise">{category.data.name}</a>
+        <h1 class="h1 rise" style="--i: 1">{post.data.title}</h1>
+        <p class="lede rise" style="--i: 2">{post.data.summary}</p>
+        <a href={`/team/${author.id}`} class="byline rise" style="--i: 3">
+          <span class="avatar" style={`background-color: ${author.data.background}`}>
+            <Image src={author.data.photo} alt="" width={128} />
+          </span>
+          <span>
+            <span class="byline__name">{author.data.name}</span>
+            <time class="byline__date" datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date)}</time>
+          </span>
+        </a>
+      </div>
+    </header>
+
+    <div class="container post-cover rise" style="--i: 3">
+      <Image src={post.data.image} alt={post.data.title} width={1600} loading="eager" />
+    </div>
+
+    <div class="container container--narrow post-body">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <aside class="author-box" aria-label="About the author">
+        <span class="avatar avatar--lg" style={`background-color: ${author.data.background}`}>
+          <Image src={author.data.photo} alt="" width={192} />
+        </span>
+        <div class="stack" style="--stack: 8px">
+          <p class="eyebrow">ABOUT THE AUTHOR</p>
+          <h2 class="h3">{author.data.name}</h2>
+          <p class="body">{authorBio}</p>
+        </div>
+      </aside>
+
+      <section class="subscribe" aria-labelledby="subscribe-heading">
+        <h2 id="subscribe-heading" class="h2-sm">Enjoyed this read?</h2>
+        <p class="body">Stay up to date with the latest video business news, strategies, and insights sent straight to your inbox!</p>
+        <a class="btn btn--primary" href={mailto('Subscribe to Medicly updates')}>{EMAIL} <span class="arrow" aria-hidden="true">→</span></a>
+      </section>
+    </div>
+  </article>
+
+  <section class="section section--ice" aria-labelledby="related-heading">
+    <div class="container">
+      <h2 id="related-heading" class="h2-sm related-heading">Related Articles</h2>
+      <ul class="related" role="list">
+        {
+          related.map((p) => (
+            <li>
+              <PostCard post={p} variant="compact" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .post-hero {
+    position: relative;
+    isolation: isolate;
+    padding: 48px 0 56px;
+  }
+
+  @media (min-width: 640px) {
+    .post-hero {
+      padding: 72px 0 72px;
+    }
+  }
+
+  .post-hero__inner {
+    display: grid;
+    justify-items: start;
+    gap: 20px;
+  }
+
+  .back {
+    font: 500 0.75rem/1 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .back:hover {
+    color: var(--navy);
+  }
+
+  .byline {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .byline__name {
+    display: block;
+    font-weight: 600;
+  }
+
+  .byline__date {
+    display: block;
+    font: 400 0.75rem/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .avatar {
+    display: block;
+    flex: none;
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .avatar--lg {
+    width: 88px;
+    height: 88px;
+  }
+
+  .avatar :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+  }
+
+  .post-cover :global(img) {
+    width: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .post-body {
+    padding-block: 64px 96px;
+  }
+
+  .author-box {
+    display: flex;
+    gap: 24px;
+    margin-top: 72px;
+    padding: 32px 0;
+    border-block: 1px solid var(--line-strong);
+  }
+
+  .subscribe {
+    display: grid;
+    justify-items: start;
+    gap: 16px;
+    margin-top: 56px;
+    padding: 40px;
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(50% 80% at 100% 0%, rgb(255 255 255 / 0.8), transparent 70%),
+      var(--lavender);
+  }
+
+  .related-heading {
+    margin-bottom: 32px;
+  }
+
+  .related {
+    display: grid;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .related {
+      grid-template-columns: repeat(2, minmax(0, 380px));
+    }
+  }
+</style>

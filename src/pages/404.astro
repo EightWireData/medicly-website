@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Not Found" ogImage={null} noindex>
+  <section class="not-found glow-hero grid-lines">
+    <div class="container container--narrow not-found__inner">
+      <div class="not-found__anim" data-lottie="/media/lottie/composition-1.json" aria-hidden="true"></div>
+      <h1 class="sr-only">Not Found</h1>
+      <p class="lede rise">The page you’re looking for isn’t found 😔<br />We suggest you head back home.</p>
+      <div class="btn-row rise" style="--i: 1">
+        <a class="btn btn--primary" href="/">Take me home <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .not-found {
+    position: relative;
+    isolation: isolate;
+    padding: 40px 0 112px;
+  }
+
+  .not-found__inner {
+    display: grid;
+    justify-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .not-found__inner .lede {
+    margin-inline: auto;
+  }
+
+  .not-found__anim {
+    width: min(100%, 720px);
+    aspect-ratio: 16 / 9;
+  }
+</style>
+
+<script>
+  // The Webflow 404 animation, loaded only on this page.
+  const box = document.querySelector<HTMLElement>('[data-lottie]');
+  if (box) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.dataset.motion === 'paused';
+    import('lottie-web/build/player/esm/lottie_light.min.js').then(({ default: lottie }) => {
+      lottie.loadAnimation({ container: box, renderer: 'svg', loop: !reduce, autoplay: !reduce, path: box.dataset.lottie });
+    });
+  }
+</script>

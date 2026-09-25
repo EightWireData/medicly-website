@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+import { mailto } from '../../data/site';
+
+export async function getStaticPaths() {
+  const jobs = await getCollection('jobs');
+  return jobs.map((job) => ({ params: { slug: job.id }, props: { job } }));
+}
+
+const { job } = Astro.props;
+const { Content } = await render(job);
+// "Apply Now" linked to "#" on Webflow; it now opens an email.
+const apply = mailto(`Application: ${job.data.title}`);
+---
+
+<Base title={job.data.title} description={job.data.summary} ogImage={null}>
+  <PageHero title={job.data.title} lede={job.data.summary} compact />
+
+  <section class="section section--white">
+    <div class="container job">
+      <div>
+        <p class="eyebrow eyebrow--rule">OVERVIEW</p>
+        <div class="prose job__body">
+          <Content />
+        </div>
+      </div>
+      <aside class="card job__card" aria-label="Job details">
+        <dl>
+          <div>
+            <dt class="eyebrow">JOB TITLE</dt>
+            <dd>{job.data.jobTitle}</dd>
+          </div>
+          <div>
+            <dt class="eyebrow">LOCATION</dt>
+            <dd>{job.data.location}</dd>
+          </div>
+          <div>
+            <dt class="eyebrow">employment basıs</dt>
+            <dd>{job.data.basis}</dd>
+          </div>
+        </dl>
+        <a class="btn btn--primary" href={apply}>Apply Now <span class="arrow" aria-hidden="true">→</span></a>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .job {
+    display: grid;
+    gap: 48px;
+  }
+
+  @media (min-width: 1024px) {
+    .job {
+      grid-template-columns: 1fr 340px;
+      gap: 80px;
+    }
+
+    .job__card {
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+      align-self: start;
+    }
+  }
+
+  .job__body {
+    margin-top: 24px;
+  }
+
+  .job__body :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .job__card {
+    display: grid;
+    gap: 28px;
+    padding: 32px;
+  }
+
+  .job__card dl {
+    display: grid;
+    gap: 20px;
+    margin: 0;
+  }
+
+  .job__card dd {
+    margin: 6px 0 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--navy);
+  }
+</style>

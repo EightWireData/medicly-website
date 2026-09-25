@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import { getEntry, type CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/format';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  /** feature = large horizontal card; default = grid card; compact = small related-article card. */
+  variant?: 'feature' | 'default' | 'compact';
+  headingLevel?: 'h2' | 'h3';
+}
+const { post, variant = 'default', headingLevel: H = 'h3' } = Astro.props;
+const author = await getEntry(post.data.author);
+const category = await getEntry(post.data.category);
+const href = `/blog/${post.id}`;
+---
+
+<article class:list={['post-card card card--hover', `post-card--${variant}`]}>
+  <a href={href} class="post-card__media" tabindex="-1" aria-hidden="true">
+    <Image src={post.data.image} alt={post.data.title} width={variant === 'feature' ? 1200 : 720} class="post-card__img" />
+  </a>
+  <div class="post-card__body">
+    <a href={`/category/${category!.id}`} class="badge">{category!.data.name}</a>
+    <H class="post-card__title"><a href={href}>{post.data.title}</a></H>
+    {variant === 'feature' && <p class="body">{post.data.summary}</p>}
+    <p class="post-card__meta">
+      <span>{author!.data.name}</span>
+      <span aria-hidden="true">·</span>
+      <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date)}</time>
+    </p>
+  </div>
+</article>
+
+<style>
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .post-card__media {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: var(--mint);
+  }
+
+  .post-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .post-card:hover .post-card__img {
+    transform: scale(1.05);
+  }
+
+  .post-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 24px;
+  }
+
+  .post-card__title {
+    font-size: 1.125rem;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+
+  .post-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* whole card is clickable via the title link */
+  .post-card__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .post-card .badge {
+    position: relative;
+    z-index: 1;
+  }
+
+  .post-card__meta {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    font: 400 0.75rem/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .post-card--feature {
+    display: grid;
+  }
+
+  @media (min-width: 900px) {
+    .post-card--feature {
+      grid-template-columns: 1.1fr 1fr;
+    }
+
+    .post-card--feature .post-card__media {
+      aspect-ratio: auto;
+      min-height: 100%;
+    }
+
+    .post-card--feature .post-card__body {
+      justify-content: center;
+      gap: 18px;
+      padding: 48px;
+    }
+
+    .post-card--feature .post-card__title {
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+  }
+
+  .post-card--compact .post-card__body {
+    padding: 20px;
+  }
+
+  .post-card--compact .post-card__title {
+    font-size: 1rem;
+  }
+</style>

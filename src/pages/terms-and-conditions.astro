@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+import { faqs, termsFirstAnswer } from '../data/faq';
+
+// Mirrors the Webflow page exactly (see the note on termsFirstAnswer and migration/owner-review.md).
+const items = [{ q: faqs[0].q, a: termsFirstAnswer }, ...faqs.slice(1)];
+---
+
+<Base
+  title="Terms and Conditions | Medicly"
+  description="An all-round solution for sensitive health data transfer.‍ Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need."
+>
+  <PageHero eyebrow="Terms of use" title="Terms and conditions" compact />
+
+  <section class="section section--white">
+    <div class="container container--narrow">
+      <FaqList items={items} />
+    </div>
+  </section>
+</Base>

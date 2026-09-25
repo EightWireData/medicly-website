@@ -775,3 +775,25 @@ html[data-motion='paused'].js .reveal {
   opacity: 1;
   transform: none;
 }
+
+/* ---------- badge ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--mint);
+  font: 500 0.6875rem/1.2 var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+a.badge:hover {
+  background: var(--teal);
+  color: #fff;
+}

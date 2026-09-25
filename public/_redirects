@@ -1,0 +1,3 @@
+# Redirects (Netlify / Cloudflare Pages format; see README for other hosts).
+# The Webflow footer "Careers" link pointed at /jobs, which never existed.
+/jobs  /job/intermediate-engineer  301

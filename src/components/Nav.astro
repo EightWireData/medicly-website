@@ -1,0 +1,507 @@
+---
+import { Image } from 'astro:assets';
+import videoThumb from '../assets/images/video-thumbnail.jpg';
+import { primaryLinks, resourceGroups, featuredVideo, icons } from '../data/nav';
+
+const path = Astro.url.pathname.replace(/\.html$/, '');
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
+---
+
+<header class="site-nav" data-nav>
+  <div class="container nav__bar">
+    <a href="/" class="nav__brand" aria-label="Medicly home">
+      <img src="/media/medicly-logo.svg" width="152" height="33" alt="Medicly" />
+    </a>
+
+    <nav class="nav__menu" aria-label="Main">
+      <ul class="nav__links" role="list">
+        {
+          primaryLinks.map((l) => (
+            <li>
+              <a href={l.href} class="nav__link" aria-current={isCurrent(l.href) ? 'page' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="nav__dropdown" data-dropdown>
+          <button type="button" class="nav__link nav__toggle" aria-expanded="false" aria-controls="resources-panel">
+            Resources
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div class="nav__panel" id="resources-panel" data-panel>
+            <div class="nav__groups">
+              {
+                resourceGroups.map((g) => (
+                  <div class="nav__group">
+                    <h4 class="nav__group-heading">{g.heading}</h4>
+                    <ul role="list">
+                      {g.items.map((item) => (
+                        <li>
+                          <a href={item.href} class="nav__item">
+                            <svg class="nav__item-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                              {icons[item.icon].map((d) => (
+                                <path d={d} stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                              ))}
+                            </svg>
+                            <span>
+                              <span class="nav__item-title">{item.title}</span>
+                              <span class="nav__item-text">{item.text}</span>
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              }
+            </div>
+            <a href={featuredVideo.href} class="nav__feature">
+              <Image src={videoThumb} alt="" width={320} class="nav__feature-img" />
+              <span class="nav__item-title">{featuredVideo.title}</span>
+              <span class="nav__item-text">{featuredVideo.text}</span>
+              <span class="nav__feature-cta">{featuredVideo.cta} <span class="arrow" aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="nav__actions">
+      <a href="/get-started" class="btn btn--primary btn--sm nav__cta">Get started</a>
+      <button type="button" class="nav__burger" aria-label="Open menu" aria-haspopup="dialog" aria-controls="mobile-menu" data-drawer-open>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <dialog class="drawer" id="mobile-menu" aria-label="Menu" data-drawer>
+    <div class="drawer__head">
+      <img src="/media/medicly-logo.svg" width="120" height="26" alt="Medicly" />
+      <button type="button" class="nav__burger" aria-label="Close menu" data-drawer-close>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+    <nav aria-label="Mobile">
+      <ul class="drawer__primary" role="list">
+        {primaryLinks.map((l) => <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a></li>)}
+      </ul>
+      {
+        resourceGroups.map((g) => (
+          <div class="drawer__group">
+            <p class="nav__group-heading">{g.heading}</p>
+            <ul role="list">
+              {g.items.map((item) => (
+                <li>
+                  <a href={item.href}>{item.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </nav>
+    <a href="/get-started" class="btn btn--primary drawer__cta">Get started</a>
+  </dialog>
+</header>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    box-shadow: var(--shadow-nav);
+    transition: box-shadow 0.5s;
+  }
+
+  .site-nav[data-scrolled] {
+    box-shadow: var(--shadow-nav-scrolled);
+  }
+
+  .nav__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: var(--nav-h);
+  }
+
+  .nav__brand img {
+    width: 136px;
+    height: auto;
+  }
+
+  .nav__menu {
+    display: none;
+    margin-right: auto;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border: 0;
+    background: none;
+    font: 500 0.75rem/1 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 1px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .nav__link:hover,
+  .nav__link[aria-current='page'],
+  .nav__toggle[aria-expanded='true'] {
+    color: var(--navy);
+  }
+
+  .nav__link:hover::after,
+  .nav__link[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+
+  .nav__toggle svg {
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .nav__toggle[aria-expanded='true'] svg {
+    transform: rotate(180deg);
+  }
+
+  /* resources panel */
+  .nav__panel {
+    position: absolute;
+    top: calc(100% - 8px);
+    left: var(--gutter);
+    right: var(--gutter);
+    display: grid;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    box-shadow: var(--shadow-card-hover);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.25s var(--ease-out),
+      transform 0.25s var(--ease-out),
+      visibility 0s linear 0.25s;
+  }
+
+  .nav__dropdown.is-open .nav__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  @media (min-width: 992px) {
+    .nav__panel {
+      grid-template-columns: 1fr 280px;
+    }
+  }
+
+  .nav__groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding: 16px 8px;
+  }
+
+  .nav__group ul {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav__group-heading {
+    margin: 0;
+    padding-inline: 12px;
+    font: 500 0.6875rem/1.4 var(--font-mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .nav__item {
+    display: flex;
+    gap: 12px;
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    color: var(--navy);
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .nav__item:hover {
+    background: var(--ice);
+  }
+
+  .nav__item-icon {
+    flex: none;
+    margin-top: 2px;
+    color: var(--teal);
+  }
+
+  .nav__item-title {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--navy);
+  }
+
+  .nav__item-text {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .nav__feature {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    background: var(--ice);
+    text-decoration: none;
+  }
+
+  .nav__feature-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .nav__feature-cta {
+    margin-top: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .nav__feature:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .nav__feature .arrow {
+    display: inline-block;
+    transition: transform 0.2s var(--ease-out);
+  }
+
+  /* actions */
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+
+  .nav__burger {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--navy);
+    cursor: pointer;
+  }
+
+  @media (min-width: 992px) {
+    .nav__menu {
+      display: block;
+    }
+
+    .nav__actions {
+      margin-left: 0;
+    }
+
+    .nav__burger {
+      display: none;
+    }
+
+    .nav__brand img {
+      width: 152px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .nav__cta {
+      display: none;
+    }
+  }
+
+  /* mobile drawer */
+  .drawer {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(86vw, 384px);
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 20px 24px 32px;
+    border: 0;
+    border-left: 1px solid var(--line);
+    background: var(--white);
+    color: var(--navy);
+    box-shadow: -24px 0 60px -24px rgb(20 54 81 / 0.45);
+    overflow-y: auto;
+  }
+
+  .drawer[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    animation: drawer-in 0.35s var(--ease-out);
+  }
+
+  .drawer::backdrop {
+    background: rgb(20 54 81 / 0.55);
+  }
+
+  @keyframes drawer-in {
+    from {
+      transform: translateX(100%);
+    }
+  }
+
+  .drawer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .drawer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .drawer__primary a {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .drawer__primary a[aria-current='page'] {
+    color: var(--teal);
+  }
+
+  .drawer__group {
+    margin-top: 24px;
+  }
+
+  .drawer__group .nav__group-heading {
+    padding: 0;
+    margin-bottom: 6px;
+  }
+
+  .drawer__group a {
+    display: block;
+    padding: 8px 0;
+    font-size: 1rem;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .drawer__cta {
+    margin-top: auto;
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-nav]')!;
+  const onScroll = () => header.toggleAttribute('data-scrolled', window.scrollY > 32);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Resources dropdown: hover (with a short close delay) on pointer devices, click/keyboard everywhere.
+  const dropdown = header.querySelector<HTMLElement>('[data-dropdown]')!;
+  const toggle = dropdown.querySelector<HTMLButtonElement>('button')!;
+  let closeTimer: number | undefined;
+  const setOpen = (open: boolean) => {
+    dropdown.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+  toggle.addEventListener('click', () => setOpen(!dropdown.classList.contains('is-open')));
+  const hover = window.matchMedia('(hover: hover)');
+  dropdown.addEventListener('pointerenter', () => {
+    if (!hover.matches) return;
+    clearTimeout(closeTimer);
+    setOpen(true);
+  });
+  dropdown.addEventListener('pointerleave', () => {
+    if (!hover.matches) return;
+    closeTimer = window.setTimeout(() => setOpen(false), 200);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && dropdown.classList.contains('is-open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target as Node)) setOpen(false);
+  });
+  dropdown.addEventListener('focusout', (e) => {
+    if (!dropdown.contains(e.relatedTarget as Node)) setOpen(false);
+  });
+
+  // Mobile drawer (native <dialog>: focus trap + Escape for free).
+  const drawer = header.querySelector<HTMLDialogElement>('[data-drawer]')!;
+  header.querySelector('[data-drawer-open]')!.addEventListener('click', () => drawer.showModal());
+  drawer.querySelector('[data-drawer-close]')!.addEventListener('click', () => drawer.close());
+  drawer.addEventListener('click', (e) => {
+    // Clicks on the backdrop report the dialog as their target but land outside its box.
+    const r = drawer.getBoundingClientRect();
+    const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    if (e.target === drawer && outside) drawer.close();
+  });
+  window.matchMedia('(min-width: 992px)').addEventListener('change', (e) => e.matches && drawer.close());
+</script>

@@ -1,0 +1,26 @@
+---
+/**
+ * Eightwire-style section header. `split` puts the eyebrow in a narrow left column and the heading
+ * on the right; `center` stacks everything centred. Title may contain <em> for the accent phrase.
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  layout?: 'split' | 'center' | 'stack';
+  as?: 'h1' | 'h2' | 'h3';
+  size?: 'h1' | 'h2' | 'h2-sm';
+  class?: string;
+}
+
+const { eyebrow, title, lede, layout = 'split', as: Tag = 'h2', size = 'h2', class: className } = Astro.props;
+---
+
+<div class:list={['section-head', `section-head--${layout}`, 'reveal', className]}>
+  {eyebrow && <p class:list={['eyebrow', layout === 'center' ? 'eyebrow--caption' : 'eyebrow--rule']}>{eyebrow}</p>}
+  <div class="section-head__body">
+    <Tag class={size} set:html={title} />
+    {lede && <p class="lede">{lede}</p>}
+    <slot />
+  </div>
+</div>

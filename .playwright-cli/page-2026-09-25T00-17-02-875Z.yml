@@ -1,0 +1,214 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Medicly home" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "Medicly" [ref=e6]
+      - navigation "Main" [ref=e7]:
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "About us" [ref=e10] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e11]:
+            - link "Product" [ref=e12] [cursor=pointer]:
+              - /url: /product
+          - listitem [ref=e13]:
+            - link "Blog" [ref=e14] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e15]:
+            - button "Resources" [ref=e16] [cursor=pointer]
+      - link "Get started" [ref=e20] [cursor=pointer]:
+        - /url: /get-started
+  - main [ref=e21]:
+    - generic [ref=e24]:
+      - paragraph [ref=e25]: HEALTHY DATA MANAGEMENT
+      - heading [level=1] [ref=e27]:
+        - text: An all-round solution for
+        - emphasis [ref=e28]: sensitive health data exchange
+      - paragraph [ref=e29]: Health and social systems across the world can access primary care data faster and more securely than ever before with Medicly.
+      - link "Get in touch" [ref=e31] [cursor=pointer]:
+        - /url: /contact
+        - text: Get in touch
+        - generic [ref=e32]: →
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: INNOVATING HEALTHCARE
+        - heading "It's time to introduce us to your data team" [level=2] [ref=e39]
+      - 'button "Play video: Medicly - New Zealand Health data exchange" [ref=e42] [cursor=pointer]'
+    - region [ref=e46]:
+      - heading "Trusted partners with" [level=2] [ref=e47]
+      - list [ref=e49]:
+        - listitem [ref=e50]:
+          - img "Snowflake" [ref=e51]
+        - listitem [ref=e52]:
+          - img "Indici" [ref=e53]
+        - listitem [ref=e54]:
+          - img "Medtech" [ref=e55]
+        - listitem [ref=e56]:
+          - img "MyPractice" [ref=e57]
+        - listitem [ref=e58]
+        - listitem [ref=e59]
+        - listitem [ref=e60]
+        - listitem [ref=e61]
+        - listitem [ref=e62]
+        - listitem [ref=e63]
+        - listitem [ref=e64]
+        - listitem [ref=e65]
+        - listitem [ref=e66]
+        - listitem [ref=e67]
+        - listitem [ref=e68]
+        - listitem [ref=e69]
+        - listitem [ref=e70]
+        - listitem [ref=e71]
+        - listitem [ref=e72]
+        - listitem [ref=e73]
+        - listitem [ref=e74]
+        - listitem [ref=e75]
+        - listitem [ref=e76]
+        - listitem [ref=e77]
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - paragraph [ref=e81]: data sharing that just works
+        - generic [ref=e82]:
+          - heading [level=2] [ref=e83]:
+            - text: Deliver primary care analytics
+            - emphasis [ref=e84]: today
+          - paragraph [ref=e85]: A no-fuss, quick setup process that lets you get to your primary care reporting and analytics sooner.
+          - link "Find out more" [ref=e86] [cursor=pointer]:
+            - /url: /about-us
+            - text: Find out more
+            - generic [ref=e87]: →
+      - list [ref=e88]:
+        - listitem [ref=e89]:
+          - generic [ref=e90]: / 01
+          - heading "Compliance out of the box" [level=3] [ref=e91]
+          - paragraph [ref=e92]: Reduce privacy and security costs with security controls met by Medicly for you.
+        - listitem [ref=e93]:
+          - generic [ref=e94]: / 02
+          - heading "Blazing fast from start to finish" [level=3] [ref=e95]
+          - paragraph [ref=e96]: Algorithm-based data sharing means no more writing and testing code.
+        - listitem [ref=e97]:
+          - generic [ref=e98]: / 03
+          - heading "The hard work is done" [level=3] [ref=e99]
+          - paragraph [ref=e100]: Matching and transforming data from the PMS to your analytics platform is done for you.
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - paragraph [ref=e104]: DAtA EXCHANGe
+        - generic [ref=e105]:
+          - heading [level=2] [ref=e106]:
+            - text: The fastest, most secure way to access
+            - emphasis [ref=e107]: primary care data
+          - paragraph [ref=e108]: Automated, integrated data across entire primary healthcare networks for easy analytics and collaboration.
+      - list [ref=e109]:
+        - listitem [ref=e110]:
+          - paragraph [ref=e111]: 80+
+          - paragraph [ref=e112]: Existing customers utilising our Data Exchange platform
+        - listitem [ref=e113]:
+          - paragraph [ref=e114]: "4000"
+          - paragraph [ref=e115]: Data records delivered securely per second
+        - listitem [ref=e116]:
+          - paragraph [ref=e117]: 3.5b
+          - paragraph [ref=e118]: Data records delivered every month
+        - listitem [ref=e119]:
+          - paragraph [ref=e120]: 80%
+          - paragraph [ref=e121]: Faster to implement than comparable solutions
+    - generic [ref=e124]:
+      - paragraph [ref=e125]: it just works
+      - heading [level=2] [ref=e126]:
+        - text: Connect, Map,
+        - emphasis [ref=e127]: Exchange.
+      - paragraph [ref=e128]: A no-fuss, quick setup process that lets you get to your primary care reporting and analytics sooner.
+      - link "Get started" [ref=e130] [cursor=pointer]:
+        - /url: /get-started
+        - text: Get started
+        - generic [ref=e131]: →
+    - generic [ref=e134]:
+      - generic [ref=e135]:
+        - paragraph [ref=e136]: TESTIMONIALS
+        - heading "Don't just take our word for it" [level=2] [ref=e138]
+      - generic [ref=e139]:
+        - figure [ref=e140]:
+          - blockquote [ref=e141]:
+            - paragraph [ref=e142]: "\"For the healthcare sector, Eightwire (and its secure data exchange), has the potential to become a critical tool that will enable the secure and timely exchange of sensitive patient information between healthcare providers.\""
+          - generic [ref=e143]:
+            - img "Manatū Hauora Ministry of Health" [ref=e144]
+            - paragraph [ref=e145]:
+              - strong [ref=e146]: MANATŪ HAUORA
+              - emphasis [ref=e147]: MINISTRY OF HEALTH
+        - figure [ref=e148]:
+          - blockquote [ref=e149]:
+            - paragraph [ref=e150]: "\"As a Medtech Certified Partner, Medicly has undergone stringent testing to build health-specific data transfer technology that safeguards your PMS data privacy and security. Medicly works seamlessly with your PMS, ensuring that data is secure in transit and is only used for the specific purpose for which it has been approved. \""
+          - generic [ref=e151]:
+            - img "Geoffrey Sayer" [ref=e152]
+            - paragraph [ref=e153]:
+              - strong [ref=e154]: GEOFFREY SAYER
+              - emphasis [ref=e155]: CEO, MedTECH GLOBAL
+    - region [ref=e156]:
+      - generic [ref=e159]:
+        - paragraph [ref=e160]: speak with the team today
+        - heading "Let's work together" [level=2] [ref=e161]
+        - paragraph [ref=e162]: Talk to us today about streamlining your data reporting
+        - link "hello@medicly.co.nz" [ref=e164] [cursor=pointer]:
+          - /url: mailto:hello@medicly.co.nz?subject=Medicly%20enquiry
+          - text: hello@medicly.co.nz
+          - generic [ref=e165]: →
+  - contentinfo [ref=e167]:
+    - generic [ref=e168]:
+      - generic [ref=e169]:
+        - generic [ref=e170]:
+          - link "Medicly home" [ref=e171] [cursor=pointer]:
+            - /url: /
+            - img "Medicly" [ref=e172]
+          - link [ref=e173] [cursor=pointer]:
+            - /url: /
+            - strong [ref=e174]: An all-round solution for sensitive health data transfer
+            - text: Medicly tackles the challenges that affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you can focus on getting the valuable insights you need.
+          - generic [ref=e175]:
+            - paragraph [ref=e176]: Powered BY
+            - link "Eightwire (opens in a new tab)" [ref=e177] [cursor=pointer]:
+              - /url: https://www.eightwire.io
+              - img "Eightwire" [ref=e178]
+        - generic [ref=e179]:
+          - paragraph [ref=e180]: Product
+          - list [ref=e181]:
+            - listitem [ref=e182]:
+              - link "Product Overview" [ref=e183] [cursor=pointer]:
+                - /url: /product
+            - listitem [ref=e184]:
+              - link "Technical Overview" [ref=e185] [cursor=pointer]:
+                - /url: /technical-overview
+            - listitem [ref=e186]:
+              - link "FAQ" [ref=e187] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=e188]:
+          - paragraph [ref=e189]: Company
+          - list [ref=e190]:
+            - listitem [ref=e191]:
+              - link "About" [ref=e192] [cursor=pointer]:
+                - /url: /about-us
+            - listitem [ref=e193]:
+              - link "Careers" [ref=e194] [cursor=pointer]:
+                - /url: /job/intermediate-engineer
+            - listitem [ref=e195]:
+              - link "Partners" [ref=e196] [cursor=pointer]:
+                - /url: /partners
+            - listitem [ref=e197]:
+              - link "Videos" [ref=e198] [cursor=pointer]:
+                - /url: /videos
+        - generic [ref=e199]:
+          - paragraph [ref=e200]: Support
+          - list [ref=e201]:
+            - listitem [ref=e202]:
+              - link "Contact us" [ref=e203] [cursor=pointer]:
+                - /url: /contact
+            - listitem [ref=e204]:
+              - link "Get started" [ref=e205] [cursor=pointer]:
+                - /url: /get-started
+            - listitem [ref=e206]:
+              - link "Privacy Policy" [ref=e207] [cursor=pointer]:
+                - /url: /privacy-policy
+      - generic [ref=e208]:
+        - paragraph [ref=e209]: © Eightwire 2026
+        - button "Pause motion" [ref=e210] [cursor=pointer]

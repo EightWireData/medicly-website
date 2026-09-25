@@ -1,0 +1,64 @@
+/*
+ * Medicly design tokens.
+ * Colours are the live Webflow site's own (CSS vars --medicly-*), plus tints taken from Medicly's
+ * illustrations. Layout, type scale and motion follow eightwire.io.
+ */
+:root {
+  /* brand */
+  --navy: #143651;
+  --navy-raised: color-mix(in srgb, #143651 88%, #fff);
+  --teal: #268f8e;
+  --teal-soft: #92c7c6;
+  --coral: #ef4951;
+  --coral-soft: #f69296;
+
+  /* surfaces */
+  --white: #fff;
+  --mint: #e2f5f4;
+  --ice: #f2fbfd;
+  --lavender: #e8eefb;
+
+  /* text + lines on light */
+  --text: var(--navy);
+  --muted: #475467;
+  --line: #e1dfec;
+  --line-strong: rgb(20 54 81 / 0.16);
+
+  /* text + lines on dark (Eightwire opacity ladder) */
+  --on-dark: #fff;
+  --on-dark-70: rgb(255 255 255 / 0.72);
+  --on-dark-60: rgb(255 255 255 / 0.62);
+  --on-dark-55: rgb(255 255 255 / 0.55);
+  --hair-dark: rgb(255 255 255 / 0.12);
+
+  /* type */
+  --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* layout */
+  --container: 1280px;
+  --narrow: 768px;
+  --gutter: 20px;
+  --nav-h: 72px;
+
+  /* shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-btn: 30px;
+
+  /* elevation (Eightwire shadows, tinted navy) */
+  --shadow-card: 0 1px 2px rgb(20 54 81 / 0.04), 0 8px 24px -8px rgb(20 54 81 / 0.12);
+  --shadow-card-hover: 0 2px 4px rgb(20 54 81 / 0.05), 0 20px 48px -12px rgb(20 54 81 / 0.22);
+  --shadow-nav: 0 1px 0 rgb(20 54 81 / 0.06);
+  --shadow-nav-scrolled: 0 1px 0 rgb(20 54 81 / 0.08), 0 12px 32px -16px rgb(38 143 142 / 0.3);
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: 32px;
+  }
+}

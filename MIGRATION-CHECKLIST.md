@@ -5,9 +5,9 @@ Target: Astro static site in this repo. Copy is verbatim; colours are Medicly's;
 Owner questions live in [migration/owner-review.md](migration/owner-review.md).
 
 ## 0 — Archive first
-- [ ] `git init`, `.gitignore`, first commit
-- [ ] `scripts/snapshot-site.mjs`: all 20 URLs + 404 + CSS + sitemap → `migration/snapshot/`
-- [ ] `scripts/fetch-assets.mjs`: 54 original assets downloaded, `migration/asset-manifest.json` written, sizes > 0
+- [x] `git init`, `.gitignore`, first commit
+- [x] `scripts/snapshot-site.mjs`: all 20 URLs + 404 + CSS + sitemap → `migration/snapshot/`
+- [x] `scripts/fetch-assets.mjs`: 54 original assets downloaded, `migration/asset-manifest.json` written, sizes > 0
 
 ## 1 — Foundation
 - [ ] Astro 7 + `@astrojs/sitemap` + `@fontsource/poppins` + `@fontsource/jetbrains-mono`; cheerio (dev)

@@ -1,0 +1,61 @@
+---
+/** Endless logo strip with faded edges; pauses on hover/focus and when motion is paused. */
+interface Logo {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+interface Props {
+  logos: Logo[];
+  /** Times the set repeats inside one half of the track, so each half is wider than the viewport. */
+  repeat?: number;
+}
+const { logos, repeat = 2 } = Astro.props;
+const set = Array.from({ length: repeat }, () => logos).flat();
+---
+
+<div class="marquee logo-marquee">
+  <ul class="marquee__track" role="list">
+    {
+      [0, 1].map((half) =>
+        set.map((logo, i) => (
+          <li aria-hidden={half === 1 || i >= logos.length ? 'true' : undefined}>
+            <img src={logo.src} alt={half === 0 && i < logos.length ? logo.alt : ''} width={logo.width} height={logo.height} loading="lazy" />
+          </li>
+        )),
+      )
+    }
+  </ul>
+</div>
+
+<style>
+  .logo-marquee ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .logo-marquee li {
+    display: grid;
+    place-items: center;
+    padding-inline: 48px;
+  }
+
+  .logo-marquee img {
+    width: auto;
+    height: 40px;
+    max-width: 180px;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition:
+      filter 0.3s,
+      opacity 0.3s;
+  }
+
+  .logo-marquee li:hover img {
+    filter: none;
+    opacity: 1;
+  }
+</style>

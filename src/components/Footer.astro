@@ -1,0 +1,171 @@
+---
+import { footerColumns } from '../data/nav';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer glow-mint">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Medicly home">
+          <img src="/media/medicly-logo.svg" width="179" height="39" alt="Medicly" loading="lazy" />
+        </a>
+        <a href="/" class="footer__blurb">
+          <strong>An all-round solution for sensitive health data transfer</strong><br /><br />Medicly tackles the challenges that
+          affect the time, energy, and cost of healthcare. It's easy to set up, operate, and maintain. It's secure and compliant, so you
+          can focus on getting the valuable insights you need.
+        </a>
+        <div class="footer__powered">
+          <p class="footer__heading">Powered BY</p>
+          <a href="https://www.eightwire.io" target="_blank" rel="noopener" aria-label="Eightwire (opens in a new tab)">
+            <img src="/media/ew-logo-green.svg" width="170" height="35" alt="Eightwire" loading="lazy" />
+          </a>
+        </div>
+      </div>
+      {
+        footerColumns.map((col) => (
+          <div class="footer__col">
+            <p class="footer__heading">{col.heading}</p>
+            <ul role="list">
+              {col.links.map((l) => (
+                <li>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    <div class="footer__bottom">
+      <p>© Eightwire {year}</p>
+      <button type="button" class="footer__motion" aria-pressed="false" data-motion-toggle>Pause motion</button>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    padding: 80px 0 36px;
+    color: var(--navy);
+  }
+
+  .footer__grid {
+    display: grid;
+    gap: 40px;
+  }
+
+  @media (min-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    }
+  }
+
+  .footer__brand {
+    display: grid;
+    gap: 24px;
+    align-content: start;
+    max-width: 26rem;
+  }
+
+  .footer__logo img {
+    width: 150px;
+    height: auto;
+  }
+
+  .footer__blurb {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .footer__blurb strong {
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .footer__powered img {
+    width: 150px;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  .footer__heading {
+    font: 500 0.6875rem/1.4 var(--font-mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .footer__col ul {
+    display: grid;
+    gap: 10px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer__col a {
+    font-size: 0.9375rem;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer__col a:hover {
+    color: var(--coral);
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid rgb(38 143 142 / 0.25);
+    font: 400 0.75rem/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .footer__motion {
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .footer__motion:hover,
+  .footer__motion[aria-pressed='true'] {
+    color: var(--navy);
+  }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-motion-toggle]')!;
+  const root = document.documentElement;
+  const sync = () => {
+    const paused = root.dataset.motion === 'paused';
+    btn.setAttribute('aria-pressed', String(paused));
+    btn.textContent = paused ? 'Resume motion' : 'Pause motion';
+  };
+  sync();
+  btn.addEventListener('click', () => {
+    const paused = root.dataset.motion !== 'paused';
+    if (paused) root.dataset.motion = 'paused';
+    else delete root.dataset.motion;
+    try {
+      localStorage.setItem('medicly-motion', paused ? 'paused' : 'running');
+    } catch {}
+    sync();
+  });
+</script>

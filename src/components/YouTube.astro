@@ -1,0 +1,116 @@
+---
+/**
+ * Click-to-play YouTube embed. Shows a poster until clicked, then loads the privacy-enhanced
+ * (youtube-nocookie) player, so nothing is fetched from YouTube on page load.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  id: string;
+  title: string;
+  poster?: ImageMetadata;
+  /** Size of the play badge. */
+  size?: 'lg' | 'md';
+  eager?: boolean;
+}
+const { id, title, poster, size = 'lg', eager = false } = Astro.props;
+---
+
+<div class:list={['yt', `yt--${size}`]} data-yt={id} data-title={title}>
+  <button type="button" class="yt__play" aria-label={`Play video: ${title}`}>
+    {
+      poster ? (
+        <Image src={poster} alt="" width={1280} class="yt__poster" loading={eager ? 'eager' : 'lazy'} />
+      ) : (
+        <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" width="480" height="360" class="yt__poster" loading={eager ? 'eager' : 'lazy'} />
+      )
+    }
+    <span class="yt__badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5.5v13l11-6.5z" fill="currentColor"></path></svg>
+    </span>
+  </button>
+</div>
+
+<style>
+  .yt {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--navy);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .yt__play {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .yt__poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .yt__play:hover .yt__poster {
+    transform: scale(1.03);
+  }
+
+  .yt__badge {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: var(--coral);
+    color: #fff;
+    transform: translate(-50%, -50%);
+    box-shadow:
+      0 0 0 10px rgb(239 73 81 / 0.22),
+      0 12px 40px -8px rgb(20 54 81 / 0.6);
+    transition:
+      transform 0.25s var(--ease-out),
+      background-color 0.2s;
+  }
+
+  .yt--md .yt__badge {
+    width: 64px;
+    height: 64px;
+  }
+
+  .yt__play:hover .yt__badge {
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  .yt :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-yt]').forEach((box) => {
+    box.querySelector('button')!.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?rel=0&autoplay=1`;
+      iframe.title = box.dataset.title ?? 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      box.replaceChildren(iframe);
+      iframe.focus();
+    });
+  });
+</script>

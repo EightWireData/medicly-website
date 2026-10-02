@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import videoThumb from '../assets/images/video-thumbnail.jpg';
-import { primaryLinks, resourceGroups, featuredVideo, icons } from '../data/nav';
+import { primaryLinks, resourceGroups, icons } from '../data/nav';
 
 const path = Astro.url.pathname.replace(/\.html$/, '');
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
@@ -58,12 +56,6 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
                 ))
               }
             </div>
-            <a href={featuredVideo.href} class="nav__feature">
-              <Image src={videoThumb} alt="" width={320} class="nav__feature-img" />
-              <span class="nav__item-title">{featuredVideo.title}</span>
-              <span class="nav__item-text">{featuredVideo.text}</span>
-              <span class="nav__feature-cta">{featuredVideo.cta} <span class="arrow" aria-hidden="true">→</span></span>
-            </a>
           </div>
         </li>
       </ul>
@@ -206,7 +198,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     position: absolute;
     top: calc(100% - 8px);
     left: var(--gutter);
-    right: var(--gutter);
+    width: min(760px, calc(100% - 2 * var(--gutter)));
     display: grid;
     gap: 8px;
     padding: 8px;
@@ -231,12 +223,6 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     transition:
       opacity 0.25s var(--ease-out),
       transform 0.25s var(--ease-out);
-  }
-
-  @media (min-width: 992px) {
-    .nav__panel {
-      grid-template-columns: 1fr 280px;
-    }
   }
 
   .nav__groups {
@@ -296,39 +282,6 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     font-size: 0.8125rem;
     line-height: 1.5;
     color: var(--muted);
-  }
-
-  .nav__feature {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 16px;
-    border-radius: var(--radius-sm);
-    background: var(--ice);
-    text-decoration: none;
-  }
-
-  .nav__feature-img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 8px;
-    border-radius: var(--radius-sm);
-  }
-
-  .nav__feature-cta {
-    margin-top: 6px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--teal);
-  }
-
-  .nav__feature:hover .arrow {
-    transform: translateX(4px);
-  }
-
-  .nav__feature .arrow {
-    display: inline-block;
-    transition: transform 0.2s var(--ease-out);
   }
 
   /* actions */

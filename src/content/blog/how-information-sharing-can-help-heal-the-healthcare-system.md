@@ -2,7 +2,6 @@
 title: "How information sharing can help heal the healthcare system"
 summary: "Information and data from GPs and other healthcare providers is available but up to now it’s been siloed within the primary health organisations and is not easily available to social services and NGOs. It’s bizarre given how much social and environmental factors impact on health and wellbeing and how much improving social wellbeing can reduce healthcare costs."
 date: 2023-05-04
-author: "jason-gleason"
 category: "data-sharing"
 image: "../../assets/images/alexander-sinn-kgltfcgfc28-unsplash.jpg"
 ---

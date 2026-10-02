@@ -30,27 +30,26 @@ npm run verify     # after a build: copy + structure checks (below)
 | What | Where |
 |---|---|
 | Blog posts | `src/content/blog/<slug>.md`. The filename is the URL. |
-| Team members | `src/content/team/<slug>.md` (role, photo, background colour, LinkedIn; the body is the bio) |
 | Job listings | `src/content/jobs/<slug>.md` |
 | Blog categories | `src/content/categories/<slug>.json` |
 | Page copy | `src/pages/*.astro`: each page's text sits in its file |
 | Nav and footer links | `src/data/nav.ts` |
 | FAQ | `src/data/faq.ts` |
-| Email, phone, address, socials | `src/data/site.ts` |
+| Contact email, phone, socials, blog byline | `src/data/site.ts` |
+| Homepage and About stats | `src/data/stats.ts` |
 | Privacy policy | `src/data/legal/privacy-policy.html` |
 | Colours, fonts, spacing | `src/styles/tokens.css` |
 
 ### Adding a blog post
 
 1. Put the header image in `src/assets/images/`.
-2. Create `src/content/blog/my-new-post.md` with the frontmatter below. The build fails with a clear message if a field is missing or an author or category doesn't exist.
+2. Create `src/content/blog/my-new-post.md` with the frontmatter below. The build fails with a clear message if a field is missing or the category doesn't exist. Every post is credited to the "Eightwire team" (`AUTHOR` in `src/data/site.ts`).
 
 ```md
 ---
 title: "My new post"
 summary: "One or two sentences for the card, the page intro and search results."
 date: 2026-10-01
-author: "andy-ellis"          # a file name from src/content/team/
 category: "data-sharing"      # a file name from src/content/categories/
 image: "../../assets/images/my-header.jpg"
 ---

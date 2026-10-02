@@ -1,4 +1,4 @@
-// One-off: converts the Webflow CMS items (blog posts, team members, jobs, categories) in the
+// One-off: converts the Webflow CMS items (blog posts, jobs, categories) in the
 // archived snapshot into Astro content files under src/content/. Copy is carried over verbatim;
 // only Webflow markup is cleaned (empty ZWJ spacer paragraphs, heading levels, CDN image URLs).
 // Re-running overwrites the generated files.
@@ -78,30 +78,7 @@ const write = async (file, text) => {
   for (const c of cats) await write(join(CONTENT, 'categories', `${c.slug}.json`), JSON.stringify({ name: c.name }, null, 2) + '\n');
 }
 
-// ---------- team ----------
-{
-  const $list = await load('about-us.html');
-  for (const item of $list('a[href^="/team/"]').toArray()) {
-    const slug = $list(item).attr('href').split('/').pop();
-    const card = $list(item).closest('.w-dyn-item');
-    const $ = await load(`team__${slug}.html`);
-    const block = $('.author-block');
-    const dir = join(CONTENT, 'team');
-    const fm = [
-      '---',
-      `name: ${yamlStr(normalize(block.find('h5').text()))}`,
-      `role: ${yamlStr(normalize(block.find('.author-job-title').text()))}`,
-      `photo: ${yamlStr(relFrom(dir, localAsset(block.find('img').attr('src'))))}`,
-      `background: ${yamlStr($list(item).attr('style').replace('background-color:', '').trim())}`,
-      `linkedin: ${yamlStr(card.find('a[href*="linkedin"]').attr('href'))}`,
-      '---',
-      '',
-      normalize(block.find('p').text()),
-      '',
-    ].join('\n');
-    await write(join(dir, `${slug}.md`), fm);
-  }
-}
+// Team members are no longer published (they have left), so the team collection is not generated.
 
 // ---------- blog posts ----------
 {
@@ -125,7 +102,6 @@ const write = async (file, text) => {
       `title: ${yamlStr(title)}`,
       `summary: ${yamlStr(normalize(section.find('.blog-content > p').first().text()))}`,
       `date: ${isoDate(normalize(author.find('.blog-detail').text()))}`,
-      `author: ${yamlStr(author.attr('href').split('/').pop())}`,
       `category: ${yamlStr(section.find('.blog-content a[href^="/category/"]').attr('href').split('/').pop())}`,
       `image: ${yamlStr(relFrom(dir, localAsset(header.attr('src'))))}`,
       '---',

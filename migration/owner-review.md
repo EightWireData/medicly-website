@@ -6,12 +6,24 @@ Each item says what is live now and what I suggest. None of them block launch.
 
 ---
 
+## 0. Changes made at your request (2 October 2026)
+
+| Change | What it means on the site |
+|---|---|
+| Former team members removed | Jason Gleason and Andy Ellis are gone from the About page (team section), the blog (bylines and author boxes) and the nav. Their profile pages `/team/andy-ellis` and `/team/jason-gleason` are deleted and redirect to /about-us. Their photos are deleted from the repo. |
+| Video series removed | The /videos page, its nav and footer links, and the nav feature card are gone (the series featured Jason). /videos redirects to the homepage. The homepage intro video stays. |
+| Blog bylines | Every post is credited to "Eightwire team". |
+| Contact email | Every email link now goes to **support@eight-wire.com** (was hello@medicly.co.nz). |
+| Office address | "Level 3, 2/12 Allen St, Wellington 6011" and the Google Maps link are removed from /contact and /get-started. The phone number stays on /get-started. |
+| Stats | See §1 below. |
+
+The archived Webflow pages in `migration/snapshot/` still contain the old names and address. That folder is the historical record of the old site; it is never published.
+
 ## 1. Typos and copy slips (kept word for word, awaiting your OK to fix)
 
 | Page | Current text | Suggested fix |
 |---|---|---|
 | /about-us, "Automated and secure health data sharing" | "They also **effect** everyone…" | "affect" |
-| /videos | "**Medically** evolved from these frustrations…" | "Medicly" |
 | /contact | "how **contact-driven** data sharing works" | Probably "contract-driven" |
 | Blog: *Sharing data securely…* | "such as **SNOWMED** or FHIR" | "SNOMED" (as on /product) |
 | Blog: *Companies are using…* | "so no one **access** any data" | "no one can access" |
@@ -44,7 +56,7 @@ The old Webflow figures were unsourced and contradicted each other: 4,000 record
 3. **Is the job posting still open?**
    - *Intermediate Engineer* dates from 2023.
    - The old footer "Careers" link pointed to /jobs, which never existed (404). It now goes to the job page, and /jobs redirects there.
-   - "Apply Now" linked to `#` (nowhere). It now opens an email to hello@medicly.co.nz.
+   - "Apply Now" linked to `#` (nowhere). It now opens an email to support@eight-wire.com.
 4. **The YouTube channel link returns 404.** The blog sidebar's "Youtube" link goes to `https://www.youtube.com/@eightwire485`, which returned "not found" when checked. It needs a new URL.
 5. **The /about-us search description was template filler.** It read "Felix is the ultimate product…". It now uses that page's own opening paragraph.
 6. **The copyright year now updates itself.** The live site showed 2023, 2024 or 2025 depending on the page. It now shows the current year.
@@ -53,7 +65,7 @@ The old Webflow figures were unsourced and contradicted each other: 4,000 record
 
 ### Forms are now email links (your decision)
 
-Webflow forms only work on Webflow. Each form is now a button that opens an email to **hello@medicly.co.nz**:
+Webflow forms only work on Webflow. Each form is now a button that opens an email to **support@eight-wire.com**:
 
 | Where | Email subject | Body pre-filled with |
 |---|---|---|
@@ -81,7 +93,7 @@ Two lines of copy still say "entering your email below" (/technical-overview) an
 
 - The Webflow nav hid the link to the page you were on. All links now always show, and the current page is underlined.
 - The "Log in" link (to conductor.eight-wire.com) was hidden at every screen size on the live site, so it is still not shown. eightwire.io has a "Sign in" link; do you want one here?
-- Videos play inline with YouTube's privacy-enhanced player, and nothing loads from YouTube until someone presses play.
+- The homepage video plays inline with YouTube's privacy-enhanced player, and nothing loads from YouTube until someone presses play.
 - A hidden page-loader animation and three decorative background shapes weren't carried over; the new design replaces them. The 404 page keeps its heart animation.
 
 ## 4. Accessibility: brand colours and contrast

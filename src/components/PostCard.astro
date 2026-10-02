@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { getEntry, type CollectionEntry } from 'astro:content';
 import { formatDate } from '../lib/format';
+import { AUTHOR } from '../data/site';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -10,7 +11,6 @@ interface Props {
   headingLevel?: 'h2' | 'h3';
 }
 const { post, variant = 'default', headingLevel: H = 'h3' } = Astro.props;
-const author = await getEntry(post.data.author);
 const category = await getEntry(post.data.category);
 const href = `/blog/${post.id}`;
 ---
@@ -24,7 +24,7 @@ const href = `/blog/${post.id}`;
     <H class="post-card__title"><a href={href}>{post.data.title}</a></H>
     {variant === 'feature' && <p class="body">{post.data.summary}</p>}
     <p class="post-card__meta">
-      <span>{author!.data.name}</span>
+      <span>{AUTHOR}</span>
       <span aria-hidden="true">·</span>
       <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date)}</time>
     </p>

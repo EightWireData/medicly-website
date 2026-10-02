@@ -10,22 +10,8 @@ const blog = defineCollection({
       title: z.string(),
       summary: z.string(),
       date: z.coerce.date(),
-      author: reference('team'),
       category: reference('categories'),
       image: image(),
-    }),
-});
-
-const team = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/team' }),
-  schema: ({ image }) =>
-    z.object({
-      name: z.string(),
-      role: z.string(),
-      photo: image(),
-      /** Background colour behind the cut-out photo. */
-      background: z.string(),
-      linkedin: z.string().url(),
     }),
 });
 
@@ -45,4 +31,4 @@ const categories = defineCollection({
   schema: z.object({ name: z.string() }),
 });
 
-export const collections = { blog, team, jobs, categories };
+export const collections = { blog, jobs, categories };

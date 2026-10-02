@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { PAGES, snapshotFile, distFile } from './lib/site.mjs';
+import { PAGES, REMOVED_PAGES, snapshotFile, distFile } from './lib/site.mjs';
 import { load, textRuns, pageText } from './lib/text.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -36,6 +36,19 @@ const ALLOW = {
   },
 };
 
+// Content removed on purpose after the migration, on every page:
+//  - named team members (they have left) and the author boxes/bylines that showed them
+//  - the video series that featured them (/videos, nav feature card, nav + footer links)
+//  - the office address (owner request); old contact email (now support@eight-wire.com)
+const REMOVED = [
+  /Jason|Andy|Gleason|Ellis|Justin Lester/,
+  /^(TEAM|We're a passionate bunch|Head of Product|CEO, Founder & Director|ABOUT THE AUTHOR)$/,
+  /^(Videos|Find out about the value our product creates|The state of New Zealand Healthcare|View videos)$/,
+  /^(Visit us|Visit Us|View on Google Maps)$|Allen St, Wellington/,
+  /^hello@medicly\.co\.nz$/,
+];
+const isRemoved = (run) => REMOVED.some((re) => re.test(run));
+
 const readHtml = async (dir, file) => load(await readFile(join(dir, file), 'utf8'));
 
 function snapshotMain($) {
@@ -55,7 +68,7 @@ function missingRuns(snapshotRuns, haystack, allow) {
   const snapshotText = snapshotRuns.join(' | ');
   const out = [];
   for (const r of new Set(snapshotRuns)) {
-    if (allow.has(r)) continue;
+    if (allow.has(r) || isRemoved(r)) continue;
     const need = count(snapshotText, r);
     const have = count(haystack, r);
     if (have < need) out.push(have ? `${r}  [${have} of ${need} occurrences]` : r);
@@ -97,7 +110,7 @@ if (!existsSync(DIST)) {
   console.error('dist/ not found — run `npm run build` first.');
   process.exit(1);
 }
-for (const p of PAGES) await checkPage(p, snapshotFile(p), distFile(p), ALLOW.pages[p]);
+for (const p of PAGES.filter((p) => !(p in REMOVED_PAGES))) await checkPage(p, snapshotFile(p), distFile(p), ALLOW.pages[p]);
 await checkPage('/404', '404.html', '404.html');
 await checkChrome();
 console.log(problems ? `\n${problems} missing run(s)` : '\nAll archived copy is present in the build.');

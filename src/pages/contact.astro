@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { ADDRESS, EMAIL, MAP_URL, mailto } from '../data/site';
+import { EMAIL, mailto } from '../data/site';
 
 // The Webflow contact form's fields, used to pre-fill the email.
 const formFields = ['First Name', 'Last Name', 'Phone number', 'Email address', 'Company', 'Message'];
@@ -30,13 +30,6 @@ const formFields = ['First Name', 'Last Name', 'Phone number', 'Email address', 
           <p class="contact-card__value">{EMAIL}</p>
           <span class="contact-card__arrow" aria-hidden="true">→</span>
         </a>
-        <div class="card contact-card rise" style="--i: 3">
-          <h2 class="h2-sm">Visit us</h2>
-          <p class="body">{ADDRESS}</p>
-          <a class="link-arrow" href={MAP_URL} target="_blank" rel="noopener">
-            View on Google Maps <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
       </div>
     </div>
   </section>

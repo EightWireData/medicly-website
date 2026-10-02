@@ -2,7 +2,6 @@
 title: "Companies are using and sharing your data, but is it safe?"
 summary: "New Zealanders need seamless information sharing in our health and social sectors while ensuring our information is protected. Unfortunately, this has been a worst case scenario where data exchanges are both insecure and lack governance to drive improvements. This puts us all in the position where data is not shared when needed because nobody can agree on the rules (just say no, it’s the easiest option), and if data is shared, the methods in place are insecure and difficult to manage at scale."
 date: 2023-05-07
-author: "jason-gleason"
 category: "privacy"
 image: "../../assets/images/ev-gpjvrzyavzc-unsplash.jpg"
 ---

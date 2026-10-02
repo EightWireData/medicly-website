@@ -2,7 +2,6 @@
 title: "Sharing data securely fast tracks better health outcomes"
 summary: "In today's healthcare landscape, data is trapped in silos, hindering effective care delivery. Personal medical histories span multiple care providers, making it challenging to obtain a holistic view of patients' health. Additionally, sharing provider data across organizations is a complex task. Even government agencies face data silo challenges as they seek the necessary information to fulfill their mandates."
 date: 2023-05-23
-author: "andy-ellis"
 category: "data-sharing"
 image: "../../assets/images/national-cancer-institute-nfvdkihxylu-unsplash.jpg"
 ---

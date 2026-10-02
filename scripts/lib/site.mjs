@@ -31,3 +31,11 @@ export const snapshotFile = (path) => (path === '/' ? 'index.html' : `${path.sli
 
 // Built file in dist/ for a page path (astro build.format: 'file').
 export const distFile = (path) => (path === '/' ? 'index.html' : `${path.slice(1)}.html`);
+
+// Pages removed after the migration, with where their old URLs now redirect (public/_redirects).
+// Team members have left (no named people on the site); the video series featured them.
+export const REMOVED_PAGES = {
+  '/team/andy-ellis': '/about-us',
+  '/team/jason-gleason': '/about-us',
+  '/videos': '/',
+};

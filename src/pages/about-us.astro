@@ -4,8 +4,6 @@ import PageHero from '../components/PageHero.astro';
 import SectionHead from '../components/SectionHead.astro';
 import StatGrid from '../components/StatGrid.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import { stats } from '../data/stats';
 
 const heroLede =
@@ -30,9 +28,6 @@ const values = [
   },
 ];
 
-// Same order as the Webflow team list.
-const order = ['andy-ellis', 'jason-gleason'];
-const team = (await getCollection('team')).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 ---
 
 <!-- The Webflow meta description here was leftover template text ("Felix is the ultimate product…"),
@@ -87,34 +82,6 @@ const team = (await getCollection('team')).sort((a, b) => order.indexOf(a.id) - 
     </div>
   </section>
 
-  <section class="section section--white">
-    <div class="container">
-      <SectionHead eyebrow="TEAM" title="We're a <em>passionate</em> bunch" />
-      <ul class="team" role="list">
-        {
-          team.map((m, i) => (
-            <li class="card card--hover team-card reveal" style={`--i: ${i}`}>
-              <a href={`/team/${m.id}`} class="team-card__photo" style={`background-color: ${m.data.background}`} aria-label={m.data.name}>
-                <Image src={m.data.photo} alt="" width={600} />
-              </a>
-              <div class="team-card__body">
-                <div>
-                  <h3 class="h3">
-                    <a href={`/team/${m.id}`}>{m.data.name}</a>
-                  </h3>
-                  <p class="body">{m.data.role}</p>
-                </div>
-                <a href={m.data.linkedin} class="team-card__social" target="_blank" rel="noopener" aria-label={`${m.data.name} on LinkedIn`}>
-                  <img src="/media/linkedin-icon-fill.svg" width="24" height="24" alt="" />
-                </a>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
   <CtaBand />
 </Base>
 
@@ -124,62 +91,4 @@ const team = (await getCollection('team')).sort((a, b) => order.indexOf(a.id) - 
     height: 80px;
   }
 
-  .team {
-    display: grid;
-    gap: 24px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  @media (min-width: 640px) {
-    .team {
-      grid-template-columns: repeat(2, minmax(0, 340px));
-    }
-  }
-
-  .team-card {
-    overflow: hidden;
-  }
-
-  .team-card__photo {
-    display: block;
-    aspect-ratio: 1;
-    overflow: hidden;
-  }
-
-  .team-card__photo :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom;
-    transition: transform 0.6s var(--ease-out);
-  }
-
-  .team-card:hover .team-card__photo :global(img) {
-    transform: scale(1.04);
-  }
-
-  .team-card__body {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 20px 24px;
-  }
-
-  .team-card__body h3 a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .team-card__social img {
-    width: 24px;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-
-  .team-card__social:hover img {
-    opacity: 1;
-  }
 </style>

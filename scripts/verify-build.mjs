@@ -8,13 +8,24 @@ import { existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as cheerio from 'cheerio';
-import { ORIGIN, PAGES, distFile } from './lib/site.mjs';
+import { ORIGIN, PAGES as ARCHIVED_PAGES, REMOVED_PAGES, distFile } from './lib/site.mjs';
+
+// Webflow URLs still served; removed ones must be gone and redirected instead.
+const PAGES = ARCHIVED_PAGES.filter((p) => !(p in REMOVED_PAGES));
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const DIST = join(root, 'dist');
 
 // Webflow assets we downloaded but deliberately don't use, and why.
 const DROPPED = {
+  // Removed with the team pages and the video series (team members have left).
+  'src/assets/images/andy-ellis.png': 'team photo; team section removed',
+  'src/assets/images/jason-gleason.png': 'team photo; team section removed',
+  'src/assets/images/jason-ep1.png': 'video thumbnail; video series removed',
+  'src/assets/images/ep2-thumb.png': 'video thumbnail; video series removed',
+  'src/assets/images/ep3-thumb.png': 'video thumbnail; video series removed',
+  'src/assets/images/video-thumbnail.jpg': 'nav video card; video series removed',
+  'public/media/linkedin-icon-fill.svg': 'team LinkedIn icon; team section removed',
   'public/media/lottie/felix-loader.json': 'page-loader animation that was hidden (display:none) on the live site',
   'public/media/values-pattern.svg': 'decorative background behind the home features; replaced by the grid-line/glow backgrounds',
   'public/media/background-shape.svg': 'decorative shape behind the /product image; replaced by a mint radial glow',
@@ -52,7 +63,17 @@ const htmlFiles = files.filter((f) => f.endsWith('.html'));
 
 // 1. URL parity
 const missingPages = PAGES.filter((p) => !existsSync(join(DIST, distFile(p))));
-missingPages.length ? missingPages.forEach((p) => fail(`page missing from build: ${p}`)) : ok(`all ${PAGES.length} Webflow URLs built`);
+missingPages.length ? missingPages.forEach((p) => fail(`page missing from build: ${p}`)) : ok(`all ${PAGES.length} kept Webflow URLs built`);
+const redirects = await readFile(join(root, 'public', '_redirects'), 'utf8');
+for (const [p, to] of Object.entries(REMOVED_PAGES)) {
+  if (existsSync(join(DIST, distFile(p)))) fail(`removed page still built: ${p}`);
+  const covered = redirects.split('\n').some((line) => {
+    const [from, target] = line.trim().split(/\s+/);
+    return target === to && (from === p || (from?.endsWith('/*') && p.startsWith(from.slice(0, -1))));
+  });
+  if (!covered) fail(`no redirect ${p} -> ${to} in public/_redirects`);
+}
+ok(`${Object.keys(REMOVED_PAGES).length} removed pages absent and redirected`);
 if (!existsSync(join(DIST, '404.html'))) fail('404.html missing');
 
 const sitemapXml = (await Promise.all(files.filter((f) => /sitemap-\d+\.xml$/.test(f)).map((f) => readFile(f, 'utf8')))).join('\n');
@@ -62,7 +83,7 @@ const notInSitemap = expected.filter((u) => !sitemapUrls.includes(u));
 const extraInSitemap = sitemapUrls.filter((u) => !expected.includes(u));
 notInSitemap.forEach((u) => fail(`sitemap is missing ${u}`));
 extraInSitemap.forEach((u) => fail(`sitemap has unexpected ${u}`));
-if (!notInSitemap.length && !extraInSitemap.length) ok(`sitemap lists exactly the ${expected.length} Webflow URLs`);
+if (!notInSitemap.length && !extraInSitemap.length) ok(`sitemap lists exactly the ${expected.length} kept Webflow URLs`);
 
 // 2. No Webflow leftovers
 const textFiles = files.filter((f) => /\.(html|css|js|xml|txt)$/.test(f));

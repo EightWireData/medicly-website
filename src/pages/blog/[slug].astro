@@ -5,7 +5,7 @@ import { Image, getImage } from 'astro:assets';
 import { getEntry, render } from 'astro:content';
 import { getPosts } from '../../lib/blog';
 import { formatDate } from '../../lib/format';
-import { EMAIL, mailto } from '../../data/site';
+import { AUTHOR, EMAIL, mailto } from '../../data/site';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -14,12 +14,10 @@ export async function getStaticPaths() {
 
 const { post, posts } = Astro.props;
 const { Content } = await render(post);
-const author = (await getEntry(post.data.author))!;
 const category = (await getEntry(post.data.category))!;
 // Webflow's Related Articles listed every post, the current one included.
 const related = posts;
 const og = await getImage({ src: post.data.image, width: 1200, format: 'jpg' });
-const authorBio = author.body?.trim() ?? '';
 ---
 
 <Base title={post.data.title} description={post.data.summary} ogImage={og.src}>
@@ -32,15 +30,15 @@ const authorBio = author.body?.trim() ?? '';
         <a href={`/category/${category.id}`} class="badge rise">{category.data.name}</a>
         <h1 class="h1 rise" style="--i: 1">{post.data.title}</h1>
         <p class="lede rise" style="--i: 2">{post.data.summary}</p>
-        <a href={`/team/${author.id}`} class="byline rise" style="--i: 3">
-          <span class="avatar" style={`background-color: ${author.data.background}`}>
-            <Image src={author.data.photo} alt="" width={128} />
+        <p class="byline rise" style="--i: 3">
+          <span class="avatar avatar--mark" aria-hidden="true">
+            <img src="/media/medicly-icon.svg" width="256" height="256" alt="" />
           </span>
           <span>
-            <span class="byline__name">{author.data.name}</span>
+            <span class="byline__name">{AUTHOR}</span>
             <time class="byline__date" datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date)}</time>
           </span>
-        </a>
+        </p>
       </div>
     </header>
 
@@ -53,16 +51,6 @@ const authorBio = author.body?.trim() ?? '';
         <Content />
       </div>
 
-      <aside class="author-box" aria-label="About the author">
-        <span class="avatar avatar--lg" style={`background-color: ${author.data.background}`}>
-          <Image src={author.data.photo} alt="" width={192} />
-        </span>
-        <div class="stack" style="--stack: 8px">
-          <p class="eyebrow">ABOUT THE AUTHOR</p>
-          <h2 class="h3">{author.data.name}</h2>
-          <p class="body">{authorBio}</p>
-        </div>
-      </aside>
 
       <section class="subscribe" aria-labelledby="subscribe-heading">
         <h2 id="subscribe-heading" class="h2-sm">Enjoyed this read?</h2>
@@ -151,16 +139,16 @@ const authorBio = author.body?.trim() ?? '';
     border-radius: 50%;
   }
 
-  .avatar--lg {
-    width: 88px;
-    height: 88px;
+  .avatar--mark {
+    display: grid;
+    place-items: center;
+    background: var(--white);
+    box-shadow: var(--shadow-card);
   }
 
-  .avatar :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom;
+  .avatar--mark img {
+    width: 34px;
+    height: 34px;
   }
 
   .post-cover :global(img) {
@@ -173,14 +161,6 @@ const authorBio = author.body?.trim() ?? '';
 
   .post-body {
     padding-block: 64px 96px;
-  }
-
-  .author-box {
-    display: flex;
-    gap: 24px;
-    margin-top: 72px;
-    padding: 32px 0;
-    border-block: 1px solid var(--line-strong);
   }
 
   .subscribe {

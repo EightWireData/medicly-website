@@ -64,3 +64,12 @@ Owner questions live in [migration/owner-review.md](migration/owner-review.md).
 - [x] README (run, build, edit content)
 - [x] `migration/owner-review.md` complete
 - [x] Hosting + DNS cutover steps written (README → Going live) — cutover itself is yours
+
+## 7 — Post-migration changes (owner requests)
+- [x] Stats replaced with Eightwire's published figures (`src/data/stats.ts`)
+- [x] Security review; security headers added (`public/_headers`)
+- [x] Former team members removed everywhere; `/team/*` → `/about-us`
+- [x] Video series removed; `/videos` → `/`
+- [x] Blog bylines → "Eightwire team"
+- [x] Contact email → support@eight-wire.com
+- [x] Office address removed

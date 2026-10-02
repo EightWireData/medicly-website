@@ -1,9 +1,9 @@
 // Contact details and third-party IDs, exactly as published on the Webflow site.
-export const EMAIL = 'hello@medicly.co.nz';
+// Medicly is run by the Eightwire team; enquiries go to Eightwire support.
+export const EMAIL = 'support@eight-wire.com';
+export const AUTHOR = 'Eightwire team';
 export const PHONE_DISPLAY = '(64) 4-979-8838';
 export const PHONE_HREF = 'tel:(64)4-979-8838';
-export const ADDRESS = 'Level 3, 2/12 Allen St, Wellington 6011';
-export const MAP_URL = 'https://goo.gl/maps/EdjwgsbyQ5zEuNLbA';
 
 export const SOCIAL = {
   twitter: 'https://twitter.com/eightwiredata',

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import { ADDRESS, EMAIL, MAP_URL, PHONE_DISPLAY, PHONE_HREF, mailto } from '../data/site';
+import { EMAIL, PHONE_DISPLAY, PHONE_HREF, mailto } from '../data/site';
 
 // The Webflow get-started form's field labels, used to pre-fill the email.
 const formFields = ['Name', 'Email Address', 'Company', 'Phone number'];
@@ -22,19 +22,12 @@ const getStartedMail = mailto('Get started with Medicly', formFields);
 
   <section class="section section--white">
     <div class="container">
-      <ul class="ruled details" role="list" style="--cols: 3">
+      <ul class="ruled details" role="list" style="--cols: 2">
         <li class="ruled__item reveal">
-          <h2 class="h2-sm">Visit Us</h2>
-          <p class="body">{ADDRESS}</p>
-          <a class="link-arrow" href={MAP_URL} target="_blank" rel="noopener">
-            View on Google Maps <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-        <li class="ruled__item reveal" style="--i: 1">
           <p class="eyebrow">Call Us</p>
           <p class="details__value"><a href={PHONE_HREF}>{PHONE_DISPLAY}</a></p>
         </li>
-        <li class="ruled__item reveal" style="--i: 2">
+        <li class="ruled__item reveal" style="--i: 1">
           <p class="eyebrow">EMAIL</p>
           <p class="details__value"><a href={getStartedMail}>{EMAIL}</a></p>
         </li>

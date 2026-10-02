@@ -7,6 +7,7 @@ import YouTube from '../components/YouTube.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { Image } from 'astro:assets';
 import geoffrey from '../assets/images/geoffrey-sayer.jpeg';
+import { stats } from '../data/stats';
 
 const partners = [
   { src: '/media/snowflake.svg', alt: 'Snowflake', width: 184, height: 44 },
@@ -33,12 +34,6 @@ const features = [
   },
 ];
 
-const stats = [
-  { value: '80+', text: 'Existing customers utilising our Data Exchange platform' },
-  { value: '4000', text: 'Data records delivered securely per second' },
-  { value: '3.5b', text: 'Data records delivered every month' },
-  { value: '80%', text: 'Faster to implement than comparable solutions' },
-];
 ---
 
 <Base
@@ -115,7 +110,7 @@ const stats = [
         title="The fastest, most secure way to access <em>primary care data</em>"
         lede="Automated, integrated data across entire primary healthcare networks for easy analytics and collaboration."
       />
-      <StatGrid stats={stats} />
+      <StatGrid stats={stats.map(({ value, text }) => ({ value, text }))} />
     </div>
   </section>
 

@@ -6,16 +6,11 @@ import StatGrid from '../components/StatGrid.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import { stats } from '../data/stats';
 
 const heroLede =
   'We understand that the healthcare sector needs quick, reliable access to primary care data. We are focused on delivering data from any PMS in the country while removing the technical and compliance costs that get in the way.';
 
-const stats = [
-  { label: 'USED BY', value: '80+', text: 'Customers across APAC' },
-  { label: 'DELIVERING', value: '4000', text: 'Records securely per second' },
-  { label: 'TRANSFERRING', value: '3.5b', text: 'Data records per month' },
-  { label: 'simple', value: '80%', text: 'Faster to implement than other solutions' },
-];
 
 const values = [
   {

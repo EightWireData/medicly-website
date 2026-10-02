@@ -28,6 +28,12 @@ const ALLOW = {
     '© Eightwire 2024',
     '© Eightwire 2025',
   ]),
+  // Per page: copy replaced on purpose after the migration (see migration/owner-review.md).
+  pages: {
+    // Webflow-era stats were unsourced and inconsistent; replaced with Eightwire's published figures (src/data/stats.ts).
+    '/': new Set(['80+', '4000', '3.5b', '80%', 'Existing customers utilising our Data Exchange platform', 'Data records delivered securely per second', 'Data records delivered every month', 'Faster to implement than comparable solutions']),
+    '/about-us': new Set(['USED BY', 'DELIVERING', 'TRANSFERRING', 'simple', '80+', '4000', '3.5b', '80%', 'Customers across APAC', 'Records securely per second', 'Data records per month', 'Faster to implement than other solutions']),
+  },
 };
 
 const readHtml = async (dir, file) => load(await readFile(join(dir, file), 'utf8'));
@@ -91,7 +97,7 @@ if (!existsSync(DIST)) {
   console.error('dist/ not found — run `npm run build` first.');
   process.exit(1);
 }
-for (const p of PAGES) await checkPage(p, snapshotFile(p), distFile(p));
+for (const p of PAGES) await checkPage(p, snapshotFile(p), distFile(p), ALLOW.pages[p]);
 await checkPage('/404', '404.html', '404.html');
 await checkChrome();
 console.log(problems ? `\n${problems} missing run(s)` : '\nAll archived copy is present in the build.');

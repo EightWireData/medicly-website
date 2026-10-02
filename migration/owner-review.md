@@ -20,7 +20,18 @@ Each item says what is live now and what I suggest. None of them block launch.
 | /job/intermediate-engineer | "employment bas**ı**s" (dotless ı) | "Employment basis" |
 | /privacy-policy | "Medicly(we, us, our)", "(if necessary)to bill you", "requesting).We may" | Add the missing spaces |
 
-**Minor inconsistency:** the homepage says "80+ Existing customers…" and "Faster to implement than comparable solutions". The About page says "80+ Customers across APAC" and "…than other solutions". Worth aligning?
+**Stats replaced (done, at your request).** The homepage and About page now show the same four figures from one file, `src/data/stats.ts`:
+
+| Figure | Wording on the site |
+|---|---|
+| 100+ | Public and private organisations exchange data on our platform |
+| 10+ | Years making data sharing between enterprises simple and secure |
+| 34 | Connectors across databases, files, transfer and SaaS |
+| 20 min | As little as it takes to connect and begin exchanging data |
+
+These are Eightwire's published figures from eightwire.io: "100+ organisations", "Since 2015", "34 connectors", "20 min".
+
+The old Webflow figures were unsourced and contradicted each other: 4,000 records a second works out to about 10 billion a month, not "3.5b". Please confirm these figures are fine to publish under the Medicly name, or send Medicly-specific ones.
 
 ## 2. Content that looks wrong or out of date
 

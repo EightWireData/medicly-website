@@ -1,0 +1,14 @@
+# Security + caching headers (Netlify / Cloudflare Pages format; see README for other hosts).
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  # Report-only first: the Intercom widget loads from several Intercom domains. Check the browser
+  # console on the live host for violations, then rename to Content-Security-Policy to enforce.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://widget.intercom.io https://js.intercomcdn.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.ytimg.com https://*.intercomcdn.com https://static.intercomassets.com https://*.intercomusercontent.com; font-src 'self' https://js.intercomcdn.com https://fonts.intercomcdn.com; connect-src 'self' https://*.intercom.io wss://*.intercom.io https://uploads.intercomcdn.com https://uploads.intercomusercontent.com; frame-src https://www.youtube-nocookie.com https://intercom-sheets.com https://www.intercom-reporting.com; media-src 'self' https://js.intercomcdn.com; object-src 'none'; base-uri 'self'; form-action 'self' https://intercom.help https://api-iam.intercom.io; frame-ancestors 'self'
+
+# Astro's hashed build assets never change, so they can be cached forever.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

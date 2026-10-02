@@ -99,6 +99,8 @@ The output is plain static files in `dist/`, so any static host works.
 
 **Redirects:** `public/_redirects` sends `/jobs` to `/job/intermediate-engineer`. Cloudflare Pages and Netlify read this file; on other hosts, set up the same redirect in their own config. The same applies to serving `404.html` for unknown URLs.
 
+**Security headers:** `public/_headers` (same format) sets HSTS, nosniff, frame and referrer policies and a report-only CSP. Enforce the CSP once the live console is clean (see owner-review §6).
+
 **Cutover steps:**
 
 1. Deploy `dist/` to the new host and open its preview URL. Click through, and check the Intercom chat and the email links.

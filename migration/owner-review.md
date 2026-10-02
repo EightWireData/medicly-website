@@ -105,13 +105,28 @@ If you want full AA compliance, these shades look almost the same and pass. It i
 
 The site is built and verified locally. Steps to go live are in the README under "Going live". Webflow should stay live until the new host serves www.medicly.co.nz correctly.
 
-## 6. Security note
+## 6. Security review (2 October 2026)
 
-The repo contains no secrets. The archived Webflow pages in `migration/snapshot/` include public client identifiers that the live site already publishes:
+**No high or medium findings.** What was checked:
 
-- Intercom app ID
-- Turnstile site key
-- Webflow's Embedly key
-- Google verification token
+| Area | Result |
+|---|---|
+| Secrets | None in the repo. The archived pages hold only public client identifiers the live site already publishes (Intercom app ID, Turnstile site key, Webflow's Embedly key, Google verification token). |
+| Dependencies | Unknown command: "audit"
 
-None of them grants access to anything.
+
+Did you mean this?
+  npm audit # Run a security audit
+To see a list of supported npm commands, run:
+  npm help: 0 vulnerabilities. |
+| Injection | Raw HTML is used in four places (FAQ answers, page titles, section titles, privacy policy), but only with text committed to this repo. No visitor input reaches the page. The site has no forms, no server code and no user data. |
+| External links | Every link that opens a new tab carries . The one plain  link (privacy.org.nz) now uses https. |
+| Third-party code | Intercom is the only third-party script, loaded as before. YouTube only loads after someone presses play, through the privacy-enhanced domain. |
+
+**Added:**  sets HSTS, nosniff, clickjacking protection, a referrer policy and a permissions policy. It also sets a Content Security Policy in **report-only** mode.
+
+**Before or after go-live, decide:**
+
+1. **Enforce the CSP.** Check the browser console on the live host for CSP reports, mostly about Intercom domains. Once it's clean, rename  to  in . Hosts other than Netlify and Cloudflare Pages need the same headers in their own config.
+2. **Repo access.** Because content files are trusted as HTML, anyone with commit access can publish arbitrary markup. Keep write access limited and require reviewed pull requests.
+3. **Privacy policy.** It doesn't mention Intercom chat, which collects visitor data, and it still cites the 1993 Act (see §2).

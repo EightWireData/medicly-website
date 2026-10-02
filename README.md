@@ -90,6 +90,12 @@ The scripts that built the archive only work while the Webflow site is still liv
 | `npm run fetch-assets` | Re-downloads the assets |
 | `node scripts/extract-cms.mjs` | Regenerates `src/content/` from the archive. It overwrites local edits, so don't run it after content changes. |
 
+## Preview on GitHub Pages
+
+A preview copy runs at **https://eightwiredata.github.io/medicly-website/** (repo `EightWireData/medicly-website`, branch `gh-pages`). To update it after changes, run `npm run deploy:pages`.
+
+The script builds the site and adds the `/medicly-website` path prefix to every link. It marks the preview `noindex` so it doesn't compete with medicly.co.nz in search, then force-pushes the result to `gh-pages`. Two things don't apply on GitHub Pages: the redirects in `_redirects` and the security headers in `_headers`.
+
 ## Going live
 
 The output is plain static files in `dist/`, so any static host works.

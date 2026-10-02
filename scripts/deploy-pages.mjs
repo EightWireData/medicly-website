@@ -3,7 +3,7 @@
 // /<repo>/, so this builds into a separate folder and prefixes every root-relative URL.
 // Canonical and social URLs are left pointing at the production site (www.medicly.co.nz).
 //
-// Usage: npm run deploy:pages            (base path defaults to /medicly)
+// Usage: npm run deploy:pages            (base path defaults to /medicly-website)
 //        node scripts/deploy-pages.mjs /other-base
 import { execSync } from 'node:child_process';
 import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync, statSync } from 'node:fs';
@@ -12,7 +12,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as cheerio from 'cheerio';
 
-const BASE = (process.argv[2] ?? '/medicly').replace(/\/$/, '');
+const BASE = (process.argv[2] ?? '/medicly-website').replace(/\/$/, '');
 const root = fileURLToPath(new URL('..', import.meta.url));
 const run = (cmd, cwd = root) => execSync(cmd, { cwd, stdio: 'inherit' });
 

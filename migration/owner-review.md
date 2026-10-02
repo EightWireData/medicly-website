@@ -38,10 +38,10 @@ The archived Webflow pages in `migration/snapshot/` still contain the old names 
 |---|---|
 | 100+ | Public and private organisations exchange data on our platform |
 | 10+ | Years making data sharing between enterprises simple and secure |
-| 34 | Connectors across databases, files, transfer and SaaS |
+| SOC 2 | Audited, and meets NZISM requirements for sensitive data sharing (from the FAQ) |
 | 20 min | As little as it takes to connect and begin exchanging data |
 
-These are Eightwire's published figures from eightwire.io: "100+ organisations", "Since 2015", "34 connectors", "20 min".
+Three are Eightwire's published figures from eightwire.io ("100+ organisations", "Since 2015", "20 min"). The SOC 2 / NZISM tile comes from the site's own FAQ. Eightwire's "34 connectors" was dropped because Medicly doesn't offer them.
 
 The old Webflow figures were unsourced and contradicted each other: 4,000 records a second works out to about 10 billion a month, not "3.5b". Please confirm these figures are fine to publish under the Medicly name, or send Medicly-specific ones.
 

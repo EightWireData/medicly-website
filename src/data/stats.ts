@@ -6,6 +6,7 @@
 export const stats = [
   { label: 'TRUSTED BY', value: '100+', text: 'Public and private organisations exchange data on our platform' },
   { label: 'PROVEN', value: '10+', text: 'Years making data sharing between enterprises simple and secure' },
-  { label: 'CONNECTED', value: '34', text: 'Connectors across databases, files, transfer and SaaS' },
+  // From the FAQ: "Eightwire meets both the NZISM security requirements for SENSITIVE data sharing and SOC 2".
+  { label: 'SECURE', value: 'SOC 2', text: 'Audited, and meets NZISM requirements for sensitive data sharing' },
   { label: 'FAST', value: '20 min', text: 'As little as it takes to connect and begin exchanging data' },
 ];
